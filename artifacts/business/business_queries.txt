@@ -1,0 +1,57 @@
+Q1. Какие мероприятия дали выручку не ниже заданного порога?
+ event_id | name | status | paid_orders | items | gross_sales 
+----------+------+--------+-------------+-------+-------------
+(0 rows)
+
+Q2. Сколько принятых и отклонённых проходов приходится на каждый час?
+ event_id |                        name                        |       scan_hour        | accepted_scans | rejected_scans | total_scans 
+----------+----------------------------------------------------+------------------------+----------------+----------------+-------------
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 03:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 04:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 05:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 06:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 07:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 08:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 09:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 10:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 11:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 12:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 13:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 14:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 15:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 16:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 17:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 18:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 19:00:00+00 |         122220 |           3780 |      126000
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 20:00:00+00 |         119892 |           3708 |      123600
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 21:00:00+00 |         118728 |           3672 |      122400
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 22:00:00+00 |         118728 |           3672 |      122400
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-08 23:00:00+00 |         118728 |           3672 |      122400
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-09 00:00:00+00 |         118728 |           3672 |      122400
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-09 01:00:00+00 |         118728 |           3672 |      122400
+        8 | Generated load dataset seed=20261004 popular event | 2027-10-09 02:00:00+00 |         118728 |           3672 |      122400
+(24 rows)
+
+Q3. Какие покупатели имеют не менее заданного количества оплаченных заказов?
+ user_id |       email       | paid_orders | paid_amount | different_events 
+---------+-------------------+-------------+-------------+------------------
+       2 | buyer@example.com |          12 |     1320.00 |                1
+(1 row)
+
+Q4. Какова заполненность квоты каждой категории?
+ event_id |                     event_name                     | category_id | category_name | quota | active_tickets | utilization_percent 
+----------+----------------------------------------------------+-------------+---------------+-------+----------------+---------------------
+        8 | Generated load dataset seed=20261004 popular event |           8 | Popular zone  |    20 |             17 |               85.00
+        1 | Symphony Night                                     |           1 | Standard      |     3 |              1 |               33.33
+(2 rows)
+
+Q5. Какие сочетания валюты и статуса оплаты дают наибольшие суммы, включая возвраты?
+                     event_name                     | currency | payment_status | payments_count | payment_amount | refunded_amount 
+----------------------------------------------------+----------+----------------+----------------+----------------+-----------------
+ Symphony Night                                     | RUB      | pending        |              1 |        2750.00 |               0
+ Generated load dataset seed=20261004 popular event | RUB      | approved       |             12 |        1320.00 |               0
+ Generated load dataset seed=20261004 popular event | RUB      | pending        |              3 |         330.00 |               0
+ Generated load dataset seed=20261004 popular event | RUB      | declined       |              2 |         220.00 |               0
+ Generated load dataset seed=20261004 popular event | RUB      | refunded       |              1 |         110.00 |          100.00
+(5 rows)
+

@@ -1,5 +1,4 @@
-.PHONY: up down clean migrate seed check-schema test test-constraints test-lifecycle all-checks generate-dev generate-load
-
+.PHONY: up down clean migrate seed seed-stress check-schema test test-constraints test-lifecycle all-checks generate-dev generate-load queries stress-check
 up:
 	docker compose up -d postgres
 
@@ -35,3 +34,12 @@ generate-dev:
 
 generate-load:
 	./scripts/generate_data.sh load
+
+queries:
+	./scripts/run_business_queries.sh
+
+seed-stress:
+	./scripts/seed_stress_safe.sh
+
+stress-check:
+	./scripts/check_stress_distribution.sh

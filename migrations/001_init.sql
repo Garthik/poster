@@ -285,12 +285,13 @@ AS $$
 DECLARE
     v_event_id BIGINT;
     v_category_id BIGINT;
+    v_seat_id BIGINT;
     v_quota INTEGER;
     v_active_count INTEGER;
     v_ticket_id BIGINT;
 BEGIN
-    SELECT event_id, category_id
-      INTO v_event_id, v_category_id
+    SELECT event_id, category_id, seat_id
+      INTO v_event_id, v_category_id, v_seat_id
       FROM app.order_items
      WHERE id = p_order_item_id
      FOR UPDATE;
@@ -319,10 +320,10 @@ BEGIN
     END IF;
 
     INSERT INTO app.tickets (
-        order_item_id, event_id, category_id, qr_hash, status, reserved_until
+        order_item_id, event_id, category_id, seat_id, qr_hash, status, reserved_until
     )
     VALUES (
-        p_order_item_id, v_event_id, v_category_id, p_qr_hash, 'reserved', p_reserved_until
+        p_order_item_id, v_event_id, v_category_id, v_seat_id, p_qr_hash, 'reserved', p_reserved_until
     )
     RETURNING id INTO v_ticket_id;
 

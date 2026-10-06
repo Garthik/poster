@@ -10,6 +10,29 @@ command -v psql >/dev/null 2>&1 || {
     exit 127
 }
 
+check_test_fixtures() {
+    echo
+    echo "==> Test fixtures"
+    psql "$DB_URL" -v ON_ERROR_STOP=1 <<'SQL'
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM app.users WHERE email = 'organizer@example.com')
+       OR NOT EXISTS (SELECT 1 FROM app.users WHERE email = 'buyer@example.com')
+       OR NOT EXISTS (SELECT 1 FROM app.users WHERE email = 'controller@example.com') THEN
+        RAISE EXCEPTION
+            'Required seed users are missing. Run: psql "$DB_URL" -v ON_ERROR_STOP=1 -f seeds/002_seed_data.sql';
+    END IF;
+
+    IF NOT EXISTS (SELECT 1 FROM app.events WHERE name = 'Symphony Night') THEN
+        RAISE EXCEPTION
+            'Required seed event is missing. Run seeds/002_seed_data.sql before tests';
+    END IF;
+END
+$$;
+SQL
+    echo "PASS: Test fixtures"
+}
+
 run_sql_test() {
     local name="$1"
     local file="$2"
@@ -26,6 +49,7 @@ run_sql_test() {
 
 
 run_sql_test "Schema structure and migration version" "tests/schema.sql"
+check_test_fixtures
 run_sql_test "Integrity constraints / negative cases" "tests/constraints.sql"
 run_sql_test "Business lifecycle scenarios" "tests/lifecycle.sql"
 
