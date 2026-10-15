@@ -1,4 +1,4 @@
-.PHONY: up down clean migrate seed seed-stress check-schema test test-constraints test-lifecycle all-checks generate-dev generate-load queries stress-check
+.PHONY: up down clean migrate seed seed-stress check-schema test test-constraints test-lifecycle all-checks generate-dev generate-load queries
 up:
 	docker compose up -d postgres
 
@@ -36,10 +36,7 @@ generate-load:
 	./scripts/generate_data.sh load
 
 queries:
-	./scripts/run_business_queries.sh
+	psql "$${DB_URL:-postgresql://ticket_app:ticket_app@localhost:5432/ticket_platform}" -v ON_ERROR_STOP=1 -f queries/business_queries.sql
 
 seed-stress:
-	./scripts/seed_stress_safe.sh
-
-stress-check:
-	./scripts/check_stress_distribution.sh
+	psql "$${DB_URL:-postgresql://ticket_app:ticket_app@localhost:5432/ticket_platform}" -v ON_ERROR_STOP=1 -f seeds/003_stress_distribution.sql

@@ -1,0 +1,16 @@
+PASS: Administrator login over verified TLS
+PASS: Application SELECT permitted
+PASS: Application INSERT permitted (rolled back)
+PASS: Administrator CREATE ROLE denied (expected)
+PASS: Analyst SELECT permitted
+PASS: Analyst CREATE TABLE denied (expected)
+PASS: Analyst nonsensitive user columns permitted
+PASS: Application CREATE ROLE denied (expected)
+PASS: Application CREATE TABLE denied (expected)
+PASS: Application migration metadata denied (expected)
+PASS: Analyst INSERT denied (expected)
+PASS: Analyst password_hash denied (expected)
+PASS: Administrator schema DDL permitted
+PASS: All three login roles are non-superusers, non-createdb, non-createrole, non-replication
+PASS: verified TLS connection (sslmode=verify-full)
+PASS: unencrypted TCP connection refused by pg_hba.conf

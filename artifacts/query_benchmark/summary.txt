@@ -1,0 +1,22 @@
+Query benchmark
+===============
+Dataset: Generated development dataset seed=20261004 popular event
+Controller ID: 3
+Interval: 2027-10-08 03:00:00+00 .. 2027-10-08 04:00:00+00
+Runs per phase: 5
+
+Median execution time (ms)
+--------------------------
+Q1 controller + time   before: 110.841   after: 12.828   speedup: 8.64x
+Q2 rejected + time     before: 102.860   after: 0.584   speedup: 176.13x
+
+Indexes created in AFTER phase
+------------------------------
+app.ticket_scans_controller_time_idx (controller_id, scanned_at DESC)
+app.ticket_scans_result_time_idx     (result, scanned_at DESC)
+
+Plans:
+  /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/query_benchmark/before/q1_run1.txt
+  /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/query_benchmark/before/q2_run1.txt
+  /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/query_benchmark/after/q1_run1.txt
+  /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/query_benchmark/after/q2_run1.txt

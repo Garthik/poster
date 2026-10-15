@@ -1,0 +1,2 @@
+2026-10-15T13:22:51Z PASS primary_write_replica_read marker=ha_replication_1792070571_15895 replay_delay_upper_bound_seconds=1
+PASS: replica refuses INSERT (read-only standby)

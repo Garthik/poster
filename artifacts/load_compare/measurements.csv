@@ -1,0 +1,11 @@
+strategy,run,time_ms
+insert,1,117.587
+copy,1,112.711
+insert,2,117.233
+copy,2,113.338
+insert,3,115.705
+copy,3,109.659
+insert,4,117.300
+copy,4,133.014
+insert,5,117.694
+copy,5,122.509

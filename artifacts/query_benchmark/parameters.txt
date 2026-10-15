@@ -1,0 +1,4 @@
+Event: Generated development dataset seed=20261004 popular event
+Controller ID: 3
+Interval: 2027-10-08 03:00:00+00 .. 2027-10-08 04:00:00+00
+Runs per phase: 5

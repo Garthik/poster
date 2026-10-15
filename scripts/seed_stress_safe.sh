@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DB_URL="${DB_URL:-postgresql://ticket_app:ticket_app@localhost:5432/ticket_platform}"
-SOURCE="$(cd "$(dirname "$0")/.." && pwd)/seeds/003_stress_distribution.sql"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+DB_URL="${DB_URL:-$("$ROOT_DIR/scripts/resolve_db_url.sh")}"
+SOURCE="$ROOT_DIR/seeds/003_stress_distribution.sql"
 
 command -v psql >/dev/null 2>&1 || {
     echo "ERROR: psql is required" >&2

@@ -1,0 +1,14 @@
+                                                                                           QUERY PLAN                                                                                           
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=299.11..299.12 rows=1 width=8) (actual time=0.552..0.552 rows=1 loops=1)
+   Buffers: shared hit=257
+   ->  Index Only Scan using ticket_scans_result_time_idx on ticket_scans  (cost=0.43..289.57 rows=3818 width=0) (actual time=0.059..0.394 rows=3888 loops=1)
+         Index Cond: ((result = 'rejected'::text) AND (scanned_at >= '2027-10-08 03:00:00+00'::timestamp with time zone) AND (scanned_at < '2027-10-08 04:00:00+00'::timestamp with time zone))
+         Heap Fetches: 108
+         Buffers: shared hit=257
+ Planning:
+   Buffers: shared hit=145
+ Planning Time: 0.911 ms
+ Execution Time: 0.606 ms
+(10 rows)
+

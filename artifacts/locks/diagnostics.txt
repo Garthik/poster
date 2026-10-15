@@ -1,0 +1,58 @@
+Lock diagnostics started for event_id=1 (Symphony Night)
+timestamp|pid|application|state|wait_type|wait_event|blocking_pids
+2026-10-07 10:34:27.30342+00|187|ticket-lock-A|active|Timeout|PgSleep|{}
+2026-10-07 10:34:27.303681+00|188|ticket-lock-B|active|Lock|transactionid|{187}
+2026-10-07 10:34:27.664158+00|187|ticket-lock-A|active|Timeout|PgSleep|{}
+2026-10-07 10:34:27.664177+00|188|ticket-lock-B|active|Lock|transactionid|{187}
+2026-10-07 10:34:28.023238+00|187|ticket-lock-A|active|Timeout|PgSleep|{}
+2026-10-07 10:34:28.023258+00|188|ticket-lock-B|active|Lock|transactionid|{187}
+2026-10-07 10:34:28.381927+00|187|ticket-lock-A|active|Timeout|PgSleep|{}
+2026-10-07 10:34:28.381949+00|188|ticket-lock-B|active|Lock|transactionid|{187}
+2026-10-07 10:34:28.753292+00|187|ticket-lock-A|active|Timeout|PgSleep|{}
+2026-10-07 10:34:28.753311+00|188|ticket-lock-B|active|Lock|transactionid|{187}
+2026-10-07 10:34:29.115322+00|187|ticket-lock-A|active|Timeout|PgSleep|{}
+2026-10-07 10:34:29.115341+00|188|ticket-lock-B|active|Lock|transactionid|{187}
+2026-10-07 10:34:29.472945+00|187|ticket-lock-A|active|Timeout|PgSleep|{}
+2026-10-07 10:34:29.472968+00|188|ticket-lock-B|active|Lock|transactionid|{187}
+2026-10-07 10:34:29.832455+00|187|ticket-lock-A|active|Timeout|PgSleep|{}
+2026-10-07 10:34:29.832474+00|188|ticket-lock-B|active|Lock|transactionid|{187}
+2026-10-07 10:34:30.190711+00|187|ticket-lock-A|active|Timeout|PgSleep|{}
+2026-10-07 10:34:30.190731+00|188|ticket-lock-B|active|Lock|transactionid|{187}
+2026-10-07 10:34:30.549976+00|187|ticket-lock-A|active|Timeout|PgSleep|{}
+2026-10-07 10:34:30.549996+00|188|ticket-lock-B|active|Lock|transactionid|{187}
+2026-10-07 10:34:30.90628+00|187|ticket-lock-A|active|Timeout|PgSleep|{}
+2026-10-07 10:34:30.906327+00|188|ticket-lock-B|active|Lock|transactionid|{187}
+2026-10-07 10:34:31.268273+00|187|ticket-lock-A|active|Timeout|PgSleep|{}
+2026-10-07 10:34:31.268292+00|188|ticket-lock-B|active|Lock|transactionid|{187}
+2026-10-07 10:34:31.625461+00|187|ticket-lock-A|active|Timeout|PgSleep|{}
+2026-10-07 10:34:31.625479+00|188|ticket-lock-B|active|Lock|transactionid|{187}
+
+pg_locks snapshot:
+
+--- Session A ---
+BEGIN
+ id 
+----
+  1
+(1 row)
+
+ pg_sleep 
+----------
+ 
+(1 row)
+
+COMMIT
+
+--- Session B ---
+ ?column? 
+----------
+        1
+(1 row)
+
+BEGIN
+ id 
+----
+  1
+(1 row)
+
+COMMIT

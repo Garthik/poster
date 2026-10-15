@@ -1,0 +1,3 @@
+INSERT median: 117.300 ms
+COPY median:   113.338 ms
+COPY speedup vs INSERT: 1.03x

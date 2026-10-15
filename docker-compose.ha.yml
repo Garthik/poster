@@ -1,0 +1,76 @@
+name: ticket-platform-ha
+services:
+  primary:
+    image: postgres:16-alpine
+    restart: "no"
+    env_file:
+      - ${TICKET_SECRETS_DIR:?Run ./scripts/ha.sh init first}/primary.env
+    entrypoint: ["/bin/sh", "/opt/ticket/start-primary.sh"]
+    ports:
+      - "127.0.0.1:${TICKET_PRIMARY_PORT:-5434}:5432"
+    volumes:
+      - ha_primary:/var/lib/postgresql/data
+      - ${TICKET_SECRETS_DIR}/tls/primary:/etc/ticket/tls:ro
+      - ${TICKET_SECRETS_DIR}/state:/etc/ticket/state:ro
+      - ./infra/ha/start-primary.sh:/opt/ticket/start-primary.sh:ro
+      - ./infra/ha/pg_hba.conf:/etc/ticket/pg_hba.conf:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ticket_root -d ticket_platform"]
+      interval: 3s
+      timeout: 2s
+      retries: 20
+    networks: [ha]
+
+  replica:
+    image: postgres:16-alpine
+    profiles: [replica]
+    restart: "no"
+    env_file:
+      - ${TICKET_SECRETS_DIR}/replica.env
+    entrypoint: ["/bin/sh", "/opt/ticket/start-replica.sh"]
+    ports:
+      - "127.0.0.1:${TICKET_REPLICA_PORT:-5435}:5432"
+    volumes:
+      - ha_replica:/var/lib/postgresql/data
+      - ${TICKET_SECRETS_DIR}/tls/replica:/etc/ticket/tls:ro
+      - ./infra/ha/start-replica.sh:/opt/ticket/start-replica.sh:ro
+      - ./infra/ha/pg_hba.conf:/etc/ticket/pg_hba.conf:ro
+    networks: [ha]
+
+  proxy:
+    image: haproxy:3.0-alpine
+    restart: unless-stopped
+    env_file:
+      - ${TICKET_SECRETS_DIR}/routing.env
+    entrypoint: ["/bin/sh", "-ec"]
+    command:
+      - 'sed "s/@TARGET@/$${TICKET_ACTIVE_DB}/g" /etc/ticket/haproxy.cfg.tpl > /tmp/haproxy.cfg; exec haproxy -W -db -f /tmp/haproxy.cfg'
+    ports:
+      - "127.0.0.1:${TICKET_PROXY_PORT:-5436}:5432"
+    volumes:
+      - ./infra/ha/haproxy.cfg.tpl:/etc/ticket/haproxy.cfg.tpl:ro
+    networks: [ha]
+
+  restore:
+    image: postgres:16-alpine
+    profiles: [restore]
+    restart: "no"
+    env_file:
+      - ${TICKET_SECRETS_DIR}/primary.env
+    entrypoint: ["/bin/sh", "/opt/ticket/start-primary.sh"]
+    ports:
+      - "127.0.0.1:${TICKET_RESTORE_PORT:-5437}:5432"
+    volumes:
+      - ha_restore:/var/lib/postgresql/data
+      - ${TICKET_SECRETS_DIR}/tls/primary:/etc/ticket/tls:ro
+      - ${TICKET_SECRETS_DIR}/restore-state:/etc/ticket/state:ro
+      - ./infra/ha/start-primary.sh:/opt/ticket/start-primary.sh:ro
+      - ./infra/ha/pg_hba.conf:/etc/ticket/pg_hba.conf:ro
+    networks: [ha]
+
+volumes:
+  ha_primary:
+  ha_replica:
+  ha_restore:
+networks:
+  ha:

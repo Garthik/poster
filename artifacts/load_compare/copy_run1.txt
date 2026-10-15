@@ -1,0 +1,10 @@
+CREATE TABLE
+Timing is on.
+COPY 75000
+Time: 112.711 ms
+Timing is off.
+ rows_loaded 
+-------------
+       75000
+(1 row)
+

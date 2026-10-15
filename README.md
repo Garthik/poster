@@ -1,3 +1,35 @@
+# Лабораторная №4: безопасный PostgreSQL и High Availability
+
+**Новая реализация:** `docker-compose.ha.yml`, `scripts/ha.sh`, `infra/ha/` и `docs/lab4-ha.md`.
+Старый `docker-compose.yml` и команды для ЛР2/3 оставлены для совместимости,
+но они демонстрационные и **не удовлетворяют** требованиям ЛР4 по ролям/TLS.
+Для сдачи ЛР4 использовать только команды HA.
+
+```bash
+# Если прежний compose занимает порт 5434, остановить его без удаления томов:
+docker compose -f docker-compose.yml down
+
+./scripts/ha.sh init
+./scripts/ha.sh up
+./scripts/ha.sh roles
+./scripts/ha.sh migrate
+./scripts/ha.sh seed
+./scripts/ha.sh replica
+./scripts/ha.sh status
+./scripts/ha.sh replcheck
+./scripts/ha.sh check
+./scripts/ha.sh backup
+./scripts/ha.sh restore
+./scripts/ha.sh lag development
+# Аварийный тест запускать ПОСЛЕДНИМ — он переводит replica в новый primary:
+./scripts/ha.sh demo
+```
+
+**Полные инструкции:** [ЛР4 — setup и проверки](docs/lab4-ha.md), [runbook](docs/ha-runbook.md),
+[критерии приёмки](docs/ha-acceptance.md). Пароли/приватные сертификаты и backup создаются вне репозитория.
+
+---
+
 # Платформа продажи билетов — PostgreSQL / Лабораторная работа
 
 Реализация первого этапа проекта по курсу «Системы управления базами данных» на основе аналитического документа платформы продажи билетов.
@@ -32,16 +64,24 @@ Makefile                    Команды проекта
 Требования: Docker Compose и `psql`. Скрипты `migrate.sh`, `check_schema.sh`, `run_tests.sh` и `test_migrations.sh` используют `DB_URL` и возвращают ненулевой код при первой ошибке.
 
 ```bash
-docker compose up -d postgres
-./scripts/migrate.sh
-psql "postgresql://ticket_app:ticket_app@localhost:5432/ticket_platform" -f seeds/002_seed_data.sql
+make up
+make migrate
+make seed
 ./scripts/run_tests.sh
 ```
+
+По умолчанию PostgreSQL публикуется на `localhost:5434` (`${POSTGRES_HOST_PORT:-5434}:5432`). Все скрипты автоматически определяют фактически опубликованный Docker-порт через `scripts/resolve_db_url.sh`. При необходимости можно явно задать `DB_URL`.
 
 Полная автоматическая проверка чистой установки и обновления:
 
 ```bash
 ./scripts/test_migrations.sh
+```
+
+Или:
+
+```bash
+make all-checks
 ```
 
 ## Скрипты автоматизации
@@ -89,3 +129,52 @@ DB_URL=postgresql://ticket_app:ticket_app@localhost:5432/ticket_platform \
 ## Матрица требований
 
 Подробное соответствие каждого пункта задания конкретным файлам находится в `docs/requirements-matrix.md`.
+
+## Расширенные SQL-сценарии
+
+Для большого набора данных и требований по SQL/конкурентности используется `docs/advanced-sql-benchmark.md`.
+
+Основные команды:
+
+```bash
+make generate-dev
+make generate-load
+make business-queries
+make transaction-demo
+make concurrency-test
+make lock-diagnostics
+make benchmark
+make compare-load
+make advanced-checks
+```
+
+Артефакты benchmark и диагностики сохраняются в каталоге `artifacts/`.
+
+## Stress-набор и базовые бизнес-запросы
+
+Для неравномерного распределения данных добавлен исходный файл `seeds/003_stress_distribution.sql`. Он сохранён без изменений. Для запуска с текущей схемой используется адаптер:
+
+```bash
+./scripts/seed_stress_safe.sh
+./scripts/check_stress_distribution.sh
+```
+
+Пять базовых бизнес-запросов находятся в `queries/business_queries.sql`.
+
+```bash
+make queries
+```
+
+Описание бизнес-вопросов, параметров и примеров результата: `docs/business-queries.md`.
+
+Проверка требований к stress-набору: `tests/stress_distribution.sql`.
+
+### Без изменения присланных файлов
+
+Контрольные копии пользователя сохранены без изменения: `Makefile` и `seeds/003_stress_distribution.sql` совпадают с исходными файлами. В обычном `Makefile` цель `seed-stress` запускает именно присланный SQL-файл напрямую. Для текущей схемы, где используется составной FK `(category_id, event_id)`, рекомендуется `Makefile.safe`:
+
+```bash
+make -f Makefile.safe seed-stress
+make -f Makefile.safe stress-check
+make -f Makefile.safe queries
+```

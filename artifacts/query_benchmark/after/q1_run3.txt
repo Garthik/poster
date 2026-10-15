@@ -1,0 +1,14 @@
+                                                                                       QUERY PLAN                                                                                       
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=6054.58..6054.59 rows=1 width=8) (actual time=13.143..13.145 rows=1 loops=1)
+   Buffers: shared hit=7361
+   ->  Index Only Scan using ticket_scans_controller_time_idx on ticket_scans  (cost=0.43..5744.69 rows=123956 width=0) (actual time=0.069..7.923 rows=129600 loops=1)
+         Index Cond: ((controller_id = 3) AND (scanned_at >= '2027-10-08 03:00:00+00'::timestamp with time zone) AND (scanned_at < '2027-10-08 04:00:00+00'::timestamp with time zone))
+         Heap Fetches: 3600
+         Buffers: shared hit=7361
+ Planning:
+   Buffers: shared hit=142
+ Planning Time: 0.995 ms
+ Execution Time: 13.202 ms
+(10 rows)
+

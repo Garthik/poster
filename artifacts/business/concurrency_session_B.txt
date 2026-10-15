@@ -1,0 +1,9 @@
+BEGIN
+ set_config 
+------------
+ 102
+(1 row)
+
+NOTICE:  Expected quota conflict: second reservation rejected
+DO
+COMMIT

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-BASE_URL="${DB_URL:-postgresql://ticket_app:ticket_app@localhost:5432/ticket_platform}"
+BASE_URL="${DB_URL:-$("$ROOT_DIR/scripts/resolve_db_url.sh")}"
 BASE_NO_DB="${BASE_URL%/*}"
 STAMP="$(date +%s)_$$"
 CLEAN_DB="ticket_platform_clean_${STAMP}"

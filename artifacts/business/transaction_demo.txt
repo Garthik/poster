@@ -1,0 +1,22 @@
+==> Cleanup previous transaction demo rows
+DO
+==> Transaction 1: COMMIT
+BEGIN
+DO
+COMMIT
+      name      | event_status | order_status | ticket_status | payment_status 
+----------------+--------------+--------------+---------------+----------------
+ TX Demo Commit | published    | paid         | valid         | approved
+(1 row)
+
+==> Transaction 2: controlled ROLLBACK
+BEGIN
+DO
+ROLLBACK
+ rolled_back_events 
+--------------------
+                  0
+(1 row)
+
+DO
+PASS: COMMIT persisted the related rows; ROLLBACK removed the second transaction.

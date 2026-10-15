@@ -1,0 +1,26 @@
+Generating development dataset: 75000 rows in app.ticket_scans, seed=20261004
+BEGIN
+SET
+ set_config 
+------------
+ 20261004
+(1 row)
+
+ set_config 
+------------
+ 75000
+(1 row)
+
+ set_config  
+-------------
+ development
+(1 row)
+
+NOTICE:  Generated rows: 75000, seed: 20261004, mode: development, popular_event_id: 3
+DO
+COMMIT
+ generated_scan_rows | accepted_rows | rejected_rows |       first_scan       |       last_scan        
+---------------------+---------------+---------------+------------------------+------------------------
+               75000 |         72750 |          2250 | 2027-10-08 03:00:00+00 | 2027-10-08 23:49:59+00
+(1 row)
+

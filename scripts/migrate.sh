@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 MIGRATIONS_DIR="$ROOT_DIR/migrations"
-DB_URL="${DB_URL:-postgresql://ticket_app:ticket_app@localhost:5432/ticket_platform}"
+DB_URL="${DB_URL:-$("$ROOT_DIR/scripts/resolve_db_url.sh")}"
 TARGET=""
 
 usage() {

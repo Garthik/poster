@@ -1,0 +1,10 @@
+CREATE TABLE
+Timing is on.
+INSERT 0 75000
+Time: 117.233 ms
+Timing is off.
+ rows_loaded 
+-------------
+       75000
+(1 row)
+

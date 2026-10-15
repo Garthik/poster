@@ -1,0 +1,9 @@
+event_name=Generated development dataset seed=20261004 popular event
+event_id=23
+from_ts=2027-08-19 14:00:00+00
+to_ts=2027-09-07 16:00:00+00
+scan_from=2027-10-08 03:00:00+00
+scan_to=2027-10-08 23:50:00+00
+min_revenue=500
+min_orders=5
+event_like=Generated development dataset seed=20261004 popular event

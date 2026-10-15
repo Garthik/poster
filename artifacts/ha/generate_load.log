@@ -1,0 +1,26 @@
+Generating load dataset: 3000000 rows in app.ticket_scans, seed=20261004
+BEGIN
+SET
+ set_config 
+------------
+ 20261004
+(1 row)
+
+ set_config 
+------------
+ 3000000
+(1 row)
+
+ set_config 
+------------
+ load
+(1 row)
+
+NOTICE:  Generated rows: 3000000, seed: 20261004, mode: load, popular_event_id: 8
+DO
+COMMIT
+ generated_scan_rows | accepted_rows | rejected_rows |       first_scan       |       last_scan        
+---------------------+---------------+---------------+------------------------+------------------------
+             3000000 |       2910000 |         90000 | 2027-10-08 03:00:00+00 | 2027-10-09 02:59:59+00
+(1 row)
+

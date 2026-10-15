@@ -1,0 +1,20 @@
+                                                                                               QUERY PLAN                                                                                               
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize Aggregate  (cost=80212.27..80212.28 rows=1 width=8) (actual time=92.627..107.800 rows=1 loops=1)
+   Buffers: shared hit=14757 read=42019
+   ->  Gather  (cost=80212.05..80212.26 rows=2 width=8) (actual time=92.489..107.793 rows=3 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=14757 read=42019
+         ->  Partial Aggregate  (cost=79212.05..79212.06 rows=1 width=8) (actual time=88.142..88.143 rows=1 loops=3)
+               Buffers: shared hit=14757 read=42019
+               ->  Parallel Seq Scan on ticket_scans  (cost=0.00..79207.96 rows=1637 width=0) (actual time=17.326..88.060 rows=1296 loops=3)
+                     Filter: ((scanned_at >= '2027-10-08 03:00:00+00'::timestamp with time zone) AND (scanned_at < '2027-10-08 04:00:00+00'::timestamp with time zone) AND (result = 'rejected'::text))
+                     Rows Removed by Filter: 1023704
+                     Buffers: shared hit=14757 read=42019
+ Planning:
+   Buffers: shared hit=104
+ Planning Time: 0.770 ms
+ Execution Time: 107.905 ms
+(16 rows)
+

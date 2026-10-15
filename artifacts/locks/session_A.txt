@@ -1,0 +1,12 @@
+BEGIN
+ id 
+----
+  1
+(1 row)
+
+ pg_sleep 
+----------
+ 
+(1 row)
+
+COMMIT

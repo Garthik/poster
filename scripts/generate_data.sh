@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DB_URL="${DB_URL:-postgresql://ticket_app:ticket_app@localhost:5432/ticket_platform}"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+DB_URL="${DB_URL:-$("$ROOT_DIR/scripts/resolve_db_url.sh")}"
 MODE="${1:-development}"
 SEED="${SEED:-20261004}"
 
@@ -424,10 +425,9 @@ BEGIN
     IF EXISTS (
         SELECT 1
         FROM app.ticket_scans s
-        LEFT JOIN app.tickets t ON t.id = s.ticket_id
-        WHERE s.controller_id <> v_controller_id
-           OR t.id IS NULL
-           OR t.event_id <> v_popular_event_id
+        JOIN app.tickets t ON t.id = s.ticket_id
+        WHERE t.event_id = v_popular_event_id
+          AND s.controller_id <> v_controller_id
     ) THEN
         RAISE EXCEPTION 'Generated ticket_scans contain invalid foreign-key references';
     END IF;

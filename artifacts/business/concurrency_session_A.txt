@@ -1,0 +1,12 @@
+BEGIN
+ reserve_zone_ticket 
+---------------------
+                  90
+(1 row)
+
+ pg_sleep 
+----------
+ 
+(1 row)
+
+COMMIT

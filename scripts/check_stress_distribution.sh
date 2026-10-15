@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
-DB_URL="${DB_URL:-postgresql://ticket_app:ticket_app@localhost:5432/ticket_platform}"
-mkdir -p artifacts/stress
-psql "$DB_URL" -v ON_ERROR_STOP=1 -f tests/stress_distribution.sql | tee artifacts/stress/stress_distribution.txt
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+DB_URL="${DB_URL:-$("$ROOT_DIR/scripts/resolve_db_url.sh")}" 
+
+psql "$DB_URL" -X -v ON_ERROR_STOP=1 -f "$ROOT_DIR/tests/stress_distribution.sql"
