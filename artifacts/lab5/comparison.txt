@@ -1,0 +1,1 @@
+PASS: identical editorial cards in MongoDB and PG JSONB. Count=3

@@ -1,0 +1,7 @@
+psql:/mnt/c/TomeD/VSCode/Proga/Afisha/poster/tests/lab5/sql_assertions.sql:85: NOTICE:  PASS Q2: accepted + rejected = total
+psql:/mnt/c/TomeD/VSCode/Proga/Afisha/poster/tests/lab5/sql_assertions.sql:85: NOTICE:  PASS Q4: category quotas are valid
+psql:/mnt/c/TomeD/VSCode/Proga/Afisha/poster/tests/lab5/sql_assertions.sql:85: NOTICE:  PASS Q6: ranking is consistent
+psql:/mnt/c/TomeD/VSCode/Proga/Afisha/poster/tests/lab5/sql_assertions.sql:85: NOTICE:  PASS Q7: LAG predecessor is correct
+psql:/mnt/c/TomeD/VSCode/Proga/Afisha/poster/tests/lab5/sql_assertions.sql:85: NOTICE:  PASS Q8: cumulative final total matches event revenue
+psql:/mnt/c/TomeD/VSCode/Proga/Afisha/poster/tests/lab5/sql_assertions.sql:85: NOTICE:  PASS: 3075000 scans, 24 paid orders, 2 revenue-bearing events
+DO

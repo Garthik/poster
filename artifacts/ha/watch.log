@@ -1,0 +1,16 @@
+Monitoring PostgreSQL primary every 2s; failover requires 3 failed probes.
+2026-10-20T11:18:00Z primary probe failure 1/3
+2026-10-20T11:18:02Z primary probe failure 2/3
+2026-10-20T11:18:04Z primary probe failure 3/3
+Promoting replica using pg_promote(wait=true)...
+ pg_promote 
+------------
+ t
+(1 row)
+
+ Container ticket-platform-ha-proxy-1  Recreate
+ Container ticket-platform-ha-proxy-1  Recreated
+ Container ticket-platform-ha-proxy-1  Starting
+ Container ticket-platform-ha-proxy-1  Started
+2026-10-20T11:18:15Z primary_unavailable replica_promoted proxy_switched
+Promoted replica is writable. Existing client connections will fail and must reconnect via proxy:5436.

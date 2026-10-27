@@ -20,7 +20,7 @@ pghost() {
   case "$1" in
     primary) printf 'localhost %s\n' "${TICKET_PRIMARY_PORT:-5434}" ;;
     replica) printf 'localhost %s\n' "${TICKET_REPLICA_PORT:-5435}" ;;
-    proxy)   printf 'localhost %s\n' "${TICKET_PROXY_PORT:-5436}" ;;
+    proxy) printf 'localhost %s\n' "${TICKET_PROXY_PORT:-5436}" ;;
     restore) printf 'localhost %s\n' "${TICKET_RESTORE_PORT:-5437}" ;;
     *) echo "unknown node $1" >&2; return 2 ;;
   esac

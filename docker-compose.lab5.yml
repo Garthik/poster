@@ -1,0 +1,21 @@
+name: ticket-platform-lab5-mongo
+services:
+  mongo:
+    image: mongo:7.0
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER:?Run ./scripts/lab5.sh init first}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:?Run ./scripts/lab5.sh init first}
+    ports:
+      - '127.0.0.1:${MONGO_HOST_PORT:-27018}:27017'
+    volumes:
+      - lab5_mongo_data:/data/db
+      - ./mongo:/work/mongo:ro
+      - ./artifacts/lab5:/work/artifacts
+    healthcheck:
+      test: ['CMD', 'mongosh', '--quiet', '--eval', 'db.adminCommand({ping:1})']
+      interval: 5s
+      timeout: 4s
+      retries: 30
+volumes:
+  lab5_mongo_data:

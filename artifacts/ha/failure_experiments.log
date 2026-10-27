@@ -1,0 +1,10 @@
+2026-10-20T11:17:39Z BEGIN acceptance demo
+2026-10-20T11:17:52Z Backup restored in independent clean instance
+2026-10-20T11:17:52Z PASS: fresh insert visible on replica
+2026-10-20T11:17:52Z EXPERIMENT 1: stop replica; primary remains writable
+2026-10-20T11:17:53Z PASS: app wrote while replica was down
+2026-10-20T11:17:55Z PASS: recovered standby caught up
+2026-10-20T11:17:55Z EXPERIMENT 2: stop primary; application temporarily loses DB connection
+2026-10-20T11:18:15Z primary_unavailable replica_promoted proxy_switched
+2026-10-20T11:18:24Z PASS: application reconnects via HAProxy and new primary accepts writes
+2026-10-20T11:18:24Z END acceptance demo. Old primary is fenced; DO NOT restart it without reinitializing as standby.

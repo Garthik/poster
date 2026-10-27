@@ -141,3 +141,60 @@ LEFT JOIN refunds_by_order rbo
   ON rbo.order_id = o.id
 GROUP BY e.name, p.currency, p.status
 ORDER BY payment_amount DESC, event_name, p.currency, p.status;
+
+\echo 'Q6. Рейтинг категорий билетов по выручке внутри каждого мероприятия (DENSE_RANK)'
+WITH category_sales AS (
+    SELECT
+        e.id AS event_id,
+        e.name AS event_name,
+        tc.id AS category_id,
+        tc.name AS category_name,
+        COUNT(t.id) FILTER (WHERE t.status IN ('valid', 'scanned')) AS sold_tickets,
+        COALESCE(SUM(tc.price) FILTER (WHERE t.status IN ('valid', 'scanned')), 0) AS revenue
+    FROM app.events e
+    JOIN app.ticket_categories tc ON tc.event_id = e.id
+    LEFT JOIN app.tickets t ON t.event_id = e.id AND t.category_id = tc.id
+    GROUP BY e.id, e.name, tc.id, tc.name
+)
+SELECT event_id, event_name, category_id, category_name, sold_tickets, revenue,
+       DENSE_RANK() OVER (PARTITION BY event_id ORDER BY revenue DESC) AS revenue_rank,
+       ROUND(100.0 * revenue / NULLIF(SUM(revenue) OVER (PARTITION BY event_id), 0), 2)
+           AS event_revenue_percent
+FROM category_sales
+ORDER BY event_id, revenue_rank, category_id;
+
+\echo 'Q7. Изменение потока сканирований по сравнению с прошлым часом (LAG)'
+WITH hourly_scans AS (
+    SELECT e.id AS event_id, e.name AS event_name,
+           date_trunc('hour', s.scanned_at) AS scan_hour,
+           COUNT(*) AS attempts,
+           COUNT(*) FILTER (WHERE s.result = 'rejected') AS rejected
+    FROM app.ticket_scans s
+    JOIN app.tickets t ON t.id = s.ticket_id
+    JOIN app.events e ON e.id = t.event_id
+    WHERE s.scanned_at >= :'scan_from'::timestamptz
+      AND s.scanned_at < :'scan_to'::timestamptz
+    GROUP BY e.id, e.name, date_trunc('hour', s.scanned_at)
+), with_previous AS (
+    SELECT *, LAG(attempts) OVER (PARTITION BY event_id ORDER BY scan_hour) AS previous_hour_attempts
+    FROM hourly_scans
+)
+SELECT event_id, event_name, scan_hour, attempts, rejected, previous_hour_attempts,
+       attempts - previous_hour_attempts AS change_from_previous_hour
+FROM with_previous
+ORDER BY event_id, scan_hour;
+
+\echo 'Q8. Накопительная сумма оплаченных заказов мероприятия (SUM OVER ROWS)'
+SELECT e.id AS event_id, e.name AS event_name,
+       o.id AS order_id, o.created_at, o.total_amount,
+       ROW_NUMBER() OVER (PARTITION BY e.id ORDER BY o.created_at, o.id) AS order_number,
+       SUM(o.total_amount) OVER (
+           PARTITION BY e.id ORDER BY o.created_at, o.id
+           ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+       ) AS cumulative_revenue
+FROM app.orders o
+JOIN app.events e ON e.id = o.event_id
+WHERE o.status = 'paid'
+  AND o.created_at >= :'from_ts'::timestamptz
+  AND o.created_at < :'to_ts'::timestamptz
+ORDER BY event_id, order_number;

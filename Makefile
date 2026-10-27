@@ -1,6 +1,16 @@
-.PHONY: up down clean migrate seed seed-stress check-schema test test-constraints test-lifecycle all-checks generate-dev generate-load queries
+.PHONY: up wait-db down clean migrate seed seed-stress check-schema test test-constraints test-lifecycle all-checks generate-dev generate-load queries advanced db-url
+
 up:
 	docker compose up -d postgres
+	@$(MAKE) wait-db
+
+wait-db:
+	@echo "Waiting for PostgreSQL..."
+	@until docker compose exec -T postgres pg_isready -U ticket_app -d ticket_platform >/dev/null 2>&1; do sleep 1; done
+	@echo "PostgreSQL is ready: $$(docker compose port postgres 5432)"
+
+db-url:
+	@./scripts/resolve_db_url.sh
 
 down:
 	docker compose down
@@ -12,16 +22,19 @@ migrate:
 	./scripts/migrate.sh
 
 seed:
-	psql "$${DB_URL:-postgresql://ticket_app:ticket_app@localhost:5432/ticket_platform}" -v ON_ERROR_STOP=1 -f seeds/002_seed_data.sql
+	@db_url="$${DB_URL:-$$(./scripts/resolve_db_url.sh)}"; \
+	psql "$$db_url" -v ON_ERROR_STOP=1 -f seeds/002_seed_data.sql
 
 check-schema:
 	./scripts/check_schema.sh
 
 test-constraints:
-	psql "$${DB_URL:-postgresql://ticket_app:ticket_app@localhost:5432/ticket_platform}" -v ON_ERROR_STOP=1 -f tests/constraints.sql
+	@db_url="$${DB_URL:-$$(./scripts/resolve_db_url.sh)}"; \
+	psql "$$db_url" -v ON_ERROR_STOP=1 -f tests/constraints.sql
 
 test-lifecycle:
-	psql "$${DB_URL:-postgresql://ticket_app:ticket_app@localhost:5432/ticket_platform}" -v ON_ERROR_STOP=1 -f tests/lifecycle.sql
+	@db_url="$${DB_URL:-$$(./scripts/resolve_db_url.sh)}"; \
+	psql "$$db_url" -v ON_ERROR_STOP=1 -f tests/lifecycle.sql
 
 test:
 	./scripts/run_tests.sh
@@ -36,7 +49,42 @@ generate-load:
 	./scripts/generate_data.sh load
 
 queries:
-	psql "$${DB_URL:-postgresql://ticket_app:ticket_app@localhost:5432/ticket_platform}" -v ON_ERROR_STOP=1 -f queries/business_queries.sql
+	./scripts/run_business_queries.sh
 
 seed-stress:
-	psql "$${DB_URL:-postgresql://ticket_app:ticket_app@localhost:5432/ticket_platform}" -v ON_ERROR_STOP=1 -f seeds/003_stress_distribution.sql
+	./scripts/seed_stress_safe.sh
+
+advanced:
+	SEED="$${SEED:-20261004}" MODE="$${MODE:-load}" GENERATE="$${GENERATE:-1}" RUNS="$${RUNS:-5}" ROWS="$${ROWS:-300000}" ./scripts/advanced_checks.sh
+
+.PHONY: ha-init ha-up ha-roles ha-migrate ha-seed ha-replica ha-status ha-check ha-replcheck ha-backup ha-restore ha-lag ha-watch ha-demo ha-down
+ha-init:
+	./scripts/ha.sh init
+ha-up:
+	./scripts/ha.sh up
+ha-roles:
+	./scripts/ha.sh roles
+ha-migrate:
+	./scripts/ha.sh migrate
+ha-seed:
+	./scripts/ha.sh seed
+ha-replica:
+	./scripts/ha.sh replica
+ha-status:
+	./scripts/ha.sh status
+ha-check:
+	./scripts/ha.sh check
+ha-replcheck:
+	./scripts/ha.sh replcheck
+ha-backup:
+	./scripts/ha.sh backup
+ha-restore:
+	./scripts/ha.sh restore
+ha-lag:
+	./scripts/ha.sh lag load
+ha-watch:
+	./scripts/ha.sh watch --daemon
+ha-demo:
+	./scripts/ha.sh demo
+ha-down:
+	./scripts/ha.sh down
