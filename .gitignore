@@ -30,3 +30,9 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+# Sprint 6 dependencies / transient failover IPC (credentials live outside Git)
+mongo/lab6/node_modules/
+artifacts/lab6/control/
+artifacts/lab6/.lab6.lock
+artifacts/lab6/**/*.tmp

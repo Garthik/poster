@@ -1,0 +1,2 @@
+PASS static HTML: 16 steps/navigation/checkboxes, 34 copy blocks, synchronized filenames, no external assets
+Inline JS extracted for node --check; browser rendering and actual clipboard are separate checks

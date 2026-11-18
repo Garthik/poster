@@ -1,0 +1,15 @@
+bash scripts/lab6.sh init          # private credentials/key, no overwrites
+bash scripts/lab6.sh up            # 3 authenticated nodes, bootstrap, wait for all
+bash scripts/lab6.sh status        # rs.status(), exactly 1 PRIMARY + 2 SECONDARY
+bash scripts/lab6.sh seed          # deterministic Lab6-only documents
+bash scripts/lab6.sh benchmark     # 2 queries, warmups, >=5 before/after explains
+bash scripts/lab6.sh bulk          # unordered bulk, partial failure, assertions
+bash scripts/lab6.sh transaction   # commit / rollback / real error-label retries
+bash scripts/lab6.sh index-write   # same-data insertion/update/storage experiment
+bash scripts/lab6.sh check         # live state + semantic artifact verification
+bash scripts/lab6.sh all           # up + all nondisruptive experiments + check
+bash scripts/lab6.sh failover --yes # explicitly stop current PRIMARY and recover
+bash scripts/lab6.sh check --with-failover # require completed failover evidence too
+bash scripts/lab6.sh test          # local unit tests inside runner
+bash scripts/lab6.sh shell [mongo1|mongo2|mongo3] # authenticated interactive mongosh
+bash scripts/lab6.sh down          # stop only Lab6, keep volumes

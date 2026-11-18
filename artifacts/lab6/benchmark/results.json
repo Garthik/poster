@@ -1,0 +1,346 @@
+{
+  "passed": true,
+  "seed": "0c6d57575e3d62b7ffc9c455a54b4d443df4b20faacd59de28f2f8ac7e51736e",
+  "runs": 5,
+  "warmups": 3,
+  "queries": [
+    {
+      "id": "feedback",
+      "collection": "visitor_feedback",
+      "filter": {
+        "pageSlug": "lab6-seed-page-000007",
+        "moderation": "approved"
+      },
+      "sort": {
+        "createdAt": -1,
+        "_id": 1
+      },
+      "limit": 100,
+      "index": "lab6_feedback_page_moderation_created_id",
+      "key": {
+        "pageSlug": 1,
+        "moderation": 1,
+        "createdAt": -1,
+        "_id": 1
+      }
+    },
+    {
+      "id": "pages",
+      "collection": "event_pages",
+      "filter": {
+        "status": "published",
+        "editor.alias": "editor-07"
+      },
+      "sort": {
+        "headline": 1,
+        "_id": 1
+      },
+      "limit": 100,
+      "index": "lab6_pages_status_editor_headline_id",
+      "key": {
+        "status": 1,
+        "editor.alias": 1,
+        "headline": 1,
+        "_id": 1
+      }
+    }
+  ],
+  "rows": [
+    {
+      "query": "feedback",
+      "phase": "before",
+      "run": 1,
+      "executionTimeMillis": 4,
+      "totalDocsExamined": 593,
+      "totalKeysExamined": 593,
+      "nReturned": 100,
+      "wallTimeMillis": 6.529273999999987,
+      "stages": "FETCH|IXSCAN|SORT",
+      "indexes": "pageSlug_1_moderation_1"
+    },
+    {
+      "query": "feedback",
+      "phase": "before",
+      "run": 2,
+      "executionTimeMillis": 2,
+      "totalDocsExamined": 593,
+      "totalKeysExamined": 593,
+      "nReturned": 100,
+      "wallTimeMillis": 5.38270399999999,
+      "stages": "FETCH|IXSCAN|SORT",
+      "indexes": "pageSlug_1_moderation_1"
+    },
+    {
+      "query": "feedback",
+      "phase": "before",
+      "run": 3,
+      "executionTimeMillis": 1,
+      "totalDocsExamined": 593,
+      "totalKeysExamined": 593,
+      "nReturned": 100,
+      "wallTimeMillis": 4.099749000000088,
+      "stages": "FETCH|IXSCAN|SORT",
+      "indexes": "pageSlug_1_moderation_1"
+    },
+    {
+      "query": "feedback",
+      "phase": "before",
+      "run": 4,
+      "executionTimeMillis": 1,
+      "totalDocsExamined": 593,
+      "totalKeysExamined": 593,
+      "nReturned": 100,
+      "wallTimeMillis": 4.002905999999939,
+      "stages": "FETCH|IXSCAN|SORT",
+      "indexes": "pageSlug_1_moderation_1"
+    },
+    {
+      "query": "feedback",
+      "phase": "before",
+      "run": 5,
+      "executionTimeMillis": 2,
+      "totalDocsExamined": 593,
+      "totalKeysExamined": 593,
+      "nReturned": 100,
+      "wallTimeMillis": 5.168946000000005,
+      "stages": "FETCH|IXSCAN|SORT",
+      "indexes": "pageSlug_1_moderation_1"
+    },
+    {
+      "query": "feedback",
+      "phase": "after",
+      "run": 1,
+      "executionTimeMillis": 0,
+      "totalDocsExamined": 100,
+      "totalKeysExamined": 100,
+      "nReturned": 100,
+      "wallTimeMillis": 2.9786430000001474,
+      "stages": "FETCH|IXSCAN|LIMIT",
+      "indexes": "lab6_feedback_page_moderation_created_id"
+    },
+    {
+      "query": "feedback",
+      "phase": "after",
+      "run": 2,
+      "executionTimeMillis": 0,
+      "totalDocsExamined": 100,
+      "totalKeysExamined": 100,
+      "nReturned": 100,
+      "wallTimeMillis": 2.867721999999958,
+      "stages": "FETCH|IXSCAN|LIMIT",
+      "indexes": "lab6_feedback_page_moderation_created_id"
+    },
+    {
+      "query": "feedback",
+      "phase": "after",
+      "run": 3,
+      "executionTimeMillis": 1,
+      "totalDocsExamined": 100,
+      "totalKeysExamined": 100,
+      "nReturned": 100,
+      "wallTimeMillis": 2.9702740000000176,
+      "stages": "FETCH|IXSCAN|LIMIT",
+      "indexes": "lab6_feedback_page_moderation_created_id"
+    },
+    {
+      "query": "feedback",
+      "phase": "after",
+      "run": 4,
+      "executionTimeMillis": 0,
+      "totalDocsExamined": 100,
+      "totalKeysExamined": 100,
+      "nReturned": 100,
+      "wallTimeMillis": 2.432305999999926,
+      "stages": "FETCH|IXSCAN|LIMIT",
+      "indexes": "lab6_feedback_page_moderation_created_id"
+    },
+    {
+      "query": "feedback",
+      "phase": "after",
+      "run": 5,
+      "executionTimeMillis": 0,
+      "totalDocsExamined": 100,
+      "totalKeysExamined": 100,
+      "nReturned": 100,
+      "wallTimeMillis": 2.3467940000000453,
+      "stages": "FETCH|IXSCAN|LIMIT",
+      "indexes": "lab6_feedback_page_moderation_created_id"
+    },
+    {
+      "query": "pages",
+      "phase": "before",
+      "run": 1,
+      "executionTimeMillis": 15,
+      "totalDocsExamined": 9000,
+      "totalKeysExamined": 18000,
+      "nReturned": 100,
+      "wallTimeMillis": 17.634489999999914,
+      "stages": "FETCH|IXSCAN|SORT",
+      "indexes": "status_1_keywords_1"
+    },
+    {
+      "query": "pages",
+      "phase": "before",
+      "run": 2,
+      "executionTimeMillis": 14,
+      "totalDocsExamined": 9000,
+      "totalKeysExamined": 18000,
+      "nReturned": 100,
+      "wallTimeMillis": 16.58638300000007,
+      "stages": "FETCH|IXSCAN|SORT",
+      "indexes": "status_1_keywords_1"
+    },
+    {
+      "query": "pages",
+      "phase": "before",
+      "run": 3,
+      "executionTimeMillis": 15,
+      "totalDocsExamined": 9000,
+      "totalKeysExamined": 18000,
+      "nReturned": 100,
+      "wallTimeMillis": 17.657581000000164,
+      "stages": "FETCH|IXSCAN|SORT",
+      "indexes": "status_1_keywords_1"
+    },
+    {
+      "query": "pages",
+      "phase": "before",
+      "run": 4,
+      "executionTimeMillis": 15,
+      "totalDocsExamined": 9000,
+      "totalKeysExamined": 18000,
+      "nReturned": 100,
+      "wallTimeMillis": 17.624810000000025,
+      "stages": "FETCH|IXSCAN|SORT",
+      "indexes": "status_1_keywords_1"
+    },
+    {
+      "query": "pages",
+      "phase": "before",
+      "run": 5,
+      "executionTimeMillis": 14,
+      "totalDocsExamined": 9000,
+      "totalKeysExamined": 18000,
+      "nReturned": 100,
+      "wallTimeMillis": 16.692463999999973,
+      "stages": "FETCH|IXSCAN|SORT",
+      "indexes": "status_1_keywords_1"
+    },
+    {
+      "query": "pages",
+      "phase": "after",
+      "run": 1,
+      "executionTimeMillis": 0,
+      "totalDocsExamined": 100,
+      "totalKeysExamined": 100,
+      "nReturned": 100,
+      "wallTimeMillis": 1.605011999999988,
+      "stages": "FETCH|IXSCAN|LIMIT",
+      "indexes": "lab6_pages_status_editor_headline_id"
+    },
+    {
+      "query": "pages",
+      "phase": "after",
+      "run": 2,
+      "executionTimeMillis": 1,
+      "totalDocsExamined": 100,
+      "totalKeysExamined": 100,
+      "nReturned": 100,
+      "wallTimeMillis": 2.6398900000001504,
+      "stages": "FETCH|IXSCAN|LIMIT",
+      "indexes": "lab6_pages_status_editor_headline_id"
+    },
+    {
+      "query": "pages",
+      "phase": "after",
+      "run": 3,
+      "executionTimeMillis": 0,
+      "totalDocsExamined": 100,
+      "totalKeysExamined": 100,
+      "nReturned": 100,
+      "wallTimeMillis": 2.1430760000000646,
+      "stages": "FETCH|IXSCAN|LIMIT",
+      "indexes": "lab6_pages_status_editor_headline_id"
+    },
+    {
+      "query": "pages",
+      "phase": "after",
+      "run": 4,
+      "executionTimeMillis": 0,
+      "totalDocsExamined": 100,
+      "totalKeysExamined": 100,
+      "nReturned": 100,
+      "wallTimeMillis": 1.9771690000000035,
+      "stages": "FETCH|IXSCAN|LIMIT",
+      "indexes": "lab6_pages_status_editor_headline_id"
+    },
+    {
+      "query": "pages",
+      "phase": "after",
+      "run": 5,
+      "executionTimeMillis": 0,
+      "totalDocsExamined": 100,
+      "totalKeysExamined": 100,
+      "nReturned": 100,
+      "wallTimeMillis": 1.9936090000001059,
+      "stages": "FETCH|IXSCAN|LIMIT",
+      "indexes": "lab6_pages_status_editor_headline_id"
+    }
+  ],
+  "summary": [
+    {
+      "query": "feedback",
+      "phase": "before",
+      "runs": 5,
+      "executionTimeMillis": 2,
+      "totalDocsExamined": 593,
+      "totalKeysExamined": 593,
+      "nReturned": 100,
+      "wallTimeMillis": 5.168946000000005
+    },
+    {
+      "query": "feedback",
+      "phase": "after",
+      "runs": 5,
+      "executionTimeMillis": 0,
+      "totalDocsExamined": 100,
+      "totalKeysExamined": 100,
+      "nReturned": 100,
+      "wallTimeMillis": 2.867721999999958
+    },
+    {
+      "query": "pages",
+      "phase": "before",
+      "runs": 5,
+      "executionTimeMillis": 15,
+      "totalDocsExamined": 9000,
+      "totalKeysExamined": 18000,
+      "nReturned": 100,
+      "wallTimeMillis": 17.624810000000025
+    },
+    {
+      "query": "pages",
+      "phase": "after",
+      "runs": 5,
+      "executionTimeMillis": 0,
+      "totalDocsExamined": 100,
+      "totalKeysExamined": 100,
+      "nReturned": 100,
+      "wallTimeMillis": 1.9936090000001059
+    }
+  ],
+  "protectedIndexes": {
+    "feedback": [
+      "_id_",
+      "pageSlug_1_moderation_1"
+    ],
+    "pages": [
+      "_id_",
+      "pgEventId_1",
+      "status_1_keywords_1"
+    ]
+  },
+  "timestamp": {
+    "$date": "2026-11-18T07:09:34.222Z"
+  }
+}

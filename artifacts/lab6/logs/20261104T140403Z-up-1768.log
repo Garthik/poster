@@ -1,0 +1,10 @@
+ Container ticket-platform-lab6-mongo1-1  Running
+ Container ticket-platform-lab6-mongo3-1  Running
+ Container ticket-platform-lab6-mongo2-1  Running
+ Container ticket-platform-lab6-mongo1-1  Waiting
+ Container ticket-platform-lab6-mongo2-1  Waiting
+ Container ticket-platform-lab6-mongo3-1  Waiting
+ Container ticket-platform-lab6-mongo3-1  Healthy
+ Container ticket-platform-lab6-mongo2-1  Healthy
+ Container ticket-platform-lab6-mongo1-1  Healthy
+MongoServerError: no replset config has been received

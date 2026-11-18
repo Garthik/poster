@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "checked": [
+    "full explain statistics",
+    "natural index usage",
+    "raw CSV and medians",
+    "bulk partial errors and replay",
+    "two-collection commit and rollback",
+    "bounded label retries and idempotency",
+    "same-data write/storage measurements"
+  ],
+  "withFailover": false,
+  "timestamp": {
+    "$date": "2026-11-05T18:06:35.246Z"
+  }
+}

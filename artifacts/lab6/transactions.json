@@ -1,0 +1,79 @@
+{
+  "passed": true,
+  "results": {
+    "commit": {
+      "value": {
+        "alreadyApplied": false
+      },
+      "attempt": 1,
+      "commitAttempts": 1
+    },
+    "replay": {
+      "value": {
+        "alreadyApplied": true
+      },
+      "attempt": 1,
+      "commitAttempts": 1
+    },
+    "payloadCollisionRejected": true,
+    "rollback": {
+      "passed": true,
+      "unchangedCollections": [
+        "event_pages",
+        "editorial_collections"
+      ],
+      "receiptAbsent": true
+    },
+    "TransientTransactionError": {
+      "value": {
+        "alreadyApplied": false
+      },
+      "attempt": 2,
+      "commitAttempts": 1
+    },
+    "UnknownTransactionCommitResult": {
+      "value": {
+        "alreadyApplied": false
+      },
+      "attempt": 1,
+      "commitAttempts": 2
+    },
+    "lostReply": {
+      "value": {
+        "alreadyApplied": false
+      },
+      "attempt": 1,
+      "commitAttempts": 2,
+      "bodyCalls": 1
+    }
+  },
+  "retries": [
+    {
+      "label": "TransientTransactionError",
+      "scope": "transaction",
+      "attempt": 1
+    },
+    {
+      "label": "UnknownTransactionCommitResult",
+      "scope": "commit",
+      "attempt": 1,
+      "commitAttempt": 1
+    },
+    {
+      "label": "UnknownTransactionCommitResult",
+      "scope": "commit",
+      "attempt": 1,
+      "commitAttempt": 1
+    }
+  ],
+  "cleaned": true,
+  "cleanupCounts": {
+    "page": 0,
+    "collection": 0,
+    "receipts": 0
+  },
+  "faultSource": "MongoDB failCommand with appName; additional explicitly injected post-commit lost reply",
+  "timestamp": {
+    "$date": "2026-11-05T18:09:43.151Z"
+  }
+}

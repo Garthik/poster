@@ -1,0 +1,144 @@
+ Container ticket-platform-lab6-mongo1-1  Running
+ Container ticket-platform-lab6-mongo2-1  Running
+ Container ticket-platform-lab6-mongo3-1  Running
+ Container ticket-platform-lab6-mongo2-1  Waiting
+ Container ticket-platform-lab6-mongo3-1  Waiting
+ Container ticket-platform-lab6-mongo1-1  Waiting
+ Container ticket-platform-lab6-mongo1-1  Healthy
+ Container ticket-platform-lab6-mongo3-1  Healthy
+ Container ticket-platform-lab6-mongo2-1  Healthy
+OK: schema validation and indexes installed for 3 collections
+PASS: rs0 initialized; Lab5 schema reused; application user ready
+#1 [internal] load local bake definitions
+#1 reading from stdin 568B done
+#1 DONE 0.0s
+
+#2 [internal] booting buildkit
+#2 starting container buildx_buildkit_happy_ramanujan0
+#2 starting container buildx_buildkit_happy_ramanujan0 0.6s done
+#2 DONE 0.6s
+
+#3 [internal] load build definition from Dockerfile
+#3 transferring dockerfile: 367B 0.0s done
+#3 DONE 0.1s
+
+#4 [internal] load metadata for docker.io/library/node:22-bookworm-slim
+#4 DONE 2.4s
+
+#5 [1/6] FROM docker.io/library/node:22-bookworm-slim@sha256:5ec23b7c622b00547753bc6ffd78085dd868a68aeb41c8e0a1418f033e13d96d
+#5 resolve docker.io/library/node:22-bookworm-slim@sha256:5ec23b7c622b00547753bc6ffd78085dd868a68aeb41c8e0a1418f033e13d96d 0.0s done
+#5 ...
+
+#6 [internal] load build context
+#6 transferring context: 4.42kB 0.1s done
+#6 DONE 0.2s
+
+#5 [1/6] FROM docker.io/library/node:22-bookworm-slim@sha256:5ec23b7c622b00547753bc6ffd78085dd868a68aeb41c8e0a1418f033e13d96d
+#5 sha256:ff2c4258f9cf850b921ff6d790c9a52585dca4811afdb2b78f92be33696d8b5d 0B / 448B 0.2s
+#5 sha256:ff2c4258f9cf850b921ff6d790c9a52585dca4811afdb2b78f92be33696d8b5d 448B / 448B 0.2s done
+#5 sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6 0B / 49.89MB 0.3s
+#5 sha256:1b7992cf5ea802ac4b2bcb787738f6040d742e27f6d10e1395bee16b0a3c6d03 0B / 1.71MB 0.2s
+#5 sha256:3c5f479ca65a7b3147df7d9724ac331de960e91ea4034826b7a5c3f9eed57934 0B / 3.31kB 0.2s
+#5 sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3 0B / 28.25MB 0.2s
+#5 sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6 4.19MB / 49.89MB 0.8s
+#5 sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6 12.58MB / 49.89MB 0.9s
+#5 sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6 15.73MB / 49.89MB 1.4s
+#5 sha256:1b7992cf5ea802ac4b2bcb787738f6040d742e27f6d10e1395bee16b0a3c6d03 1.05MB / 1.71MB 1.2s
+#5 sha256:3c5f479ca65a7b3147df7d9724ac331de960e91ea4034826b7a5c3f9eed57934 3.31kB / 3.31kB 1.2s done
+#5 sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6 26.21MB / 49.89MB 1.5s
+#5 sha256:1b7992cf5ea802ac4b2bcb787738f6040d742e27f6d10e1395bee16b0a3c6d03 1.71MB / 1.71MB 1.4s done
+#5 sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6 40.89MB / 49.89MB 1.8s
+#5 sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6 44.04MB / 49.89MB 2.0s
+#5 sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3 2.10MB / 28.25MB 3.6s
+#5 sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6 48.23MB / 49.89MB 4.4s
+#5 sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6 49.89MB / 49.89MB 4.6s done
+#5 sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3 4.19MB / 28.25MB 4.5s
+#5 sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3 6.29MB / 28.25MB 5.0s
+#5 sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3 9.44MB / 28.25MB 5.3s
+#5 sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3 12.58MB / 28.25MB 5.4s
+#5 sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3 16.78MB / 28.25MB 5.6s
+#5 sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3 20.97MB / 28.25MB 5.7s
+#5 sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3 25.17MB / 28.25MB 5.9s
+#5 sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3 28.25MB / 28.25MB 6.0s
+#5 sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3 28.25MB / 28.25MB 6.0s done
+#5 extracting sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3
+#5 extracting sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3 0.9s done
+#5 DONE 7.4s
+
+#5 [1/6] FROM docker.io/library/node:22-bookworm-slim@sha256:5ec23b7c622b00547753bc6ffd78085dd868a68aeb41c8e0a1418f033e13d96d
+#5 extracting sha256:3c5f479ca65a7b3147df7d9724ac331de960e91ea4034826b7a5c3f9eed57934 0.0s done
+#5 extracting sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6
+#5 extracting sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6 1.3s done
+#5 DONE 8.7s
+
+#5 [1/6] FROM docker.io/library/node:22-bookworm-slim@sha256:5ec23b7c622b00547753bc6ffd78085dd868a68aeb41c8e0a1418f033e13d96d
+#5 extracting sha256:1b7992cf5ea802ac4b2bcb787738f6040d742e27f6d10e1395bee16b0a3c6d03 0.1s done
+#5 extracting sha256:ff2c4258f9cf850b921ff6d790c9a52585dca4811afdb2b78f92be33696d8b5d 0.0s done
+#5 DONE 8.9s
+
+#7 [2/6] WORKDIR /opt/lab6/mongo/lab6
+#7 DONE 0.2s
+
+#8 [3/6] COPY mongo/lab6/package*.json ./
+#8 DONE 0.1s
+
+#9 [4/6] RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
+#9 10.09 
+#9 10.09 added 12 packages, and audited 13 packages in 10s
+#9 10.09 
+#9 10.09 found 0 vulnerabilities
+#9 10.10 npm notice
+#9 10.10 npm notice New major version of npm available! 10.9.9 -> 12.2.2
+#9 10.10 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+#9 10.10 npm notice To update run: npm install -g npm@12.2.2
+#9 10.10 npm notice
+#9 10.28 npm warn using --force Recommended protections disabled.
+#9 DONE 10.6s
+
+#10 [5/6] COPY mongo/lab6/ ./
+#10 DONE 0.1s
+
+#11 [6/6] COPY tests/lab6/ /opt/lab6/tests/lab6/
+#11 DONE 0.1s
+
+#12 exporting to docker image format
+#12 exporting layers
+#12 exporting layers 0.9s done
+#12 exporting manifest sha256:45bdfc851b8c1a701d244de585116de1e72646a73d9efb0bd68957654bd18a3e 0.0s done
+#12 exporting config sha256:4e0d16b41498cbbc6ef87180e59bdcb30dd005c9f4a6652ecfb7df0bed193c5c 0.0s done
+#12 sending tarball
+#12 ...
+
+#13 importing to docker
+#13 loading layer 1d7b9dd8778e 28.02MB / 28.25MB 2.1s
+#13 loading layer e597c47e115a 3.31kB / 3.31kB
+#13 loading layer 0e1faafd1d11 48.23MB / 49.89MB 2.1s
+#13 loading layer ce67f65846ad 32.77kB / 1.71MB
+#13 loading layer 33226972b872 448B / 448B
+#13 loading layer 7bd0d5557f9d 145B / 145B
+#13 loading layer 534ce210cb11 2.07kB / 2.07kB
+#13 loading layer ea126b2bd216 32.77kB / 2.10MB
+#13 loading layer f3263af09e07 16.59kB / 16.59kB
+#13 loading layer 1d7b9dd8778e 28.25MB / 28.25MB 6.0s done
+#13 loading layer e597c47e115a 3.31kB / 3.31kB 3.7s done
+#13 loading layer 0e1faafd1d11 49.89MB / 49.89MB 3.6s done
+#13 loading layer ce67f65846ad 1.71MB / 1.71MB 0.8s done
+#13 loading layer 33226972b872 448B / 448B 0.7s done
+#13 loading layer 7bd0d5557f9d 145B / 145B 0.7s done
+#13 loading layer 534ce210cb11 2.07kB / 2.07kB 0.7s done
+#13 loading layer ea126b2bd216 2.10MB / 2.10MB 0.6s done
+#13 loading layer f3263af09e07 16.59kB / 16.59kB 0.1s done
+#13 loading layer ae38ccf8bef9 3.02kB / 3.02kB 0.1s done
+#13 DONE 6.0s
+
+#12 exporting to docker image format
+#12 sending tarball 8.7s done
+#12 DONE 9.6s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ ticket-platform-lab6-runner  Built
+mongo1:27101: SECONDARY health=1
+mongo2:27102: PRIMARY health=1
+mongo3:27103: SECONDARY health=1
+PASS: rs0: 3 data-bearing voters; 1 PRIMARY and 2 SECONDARY

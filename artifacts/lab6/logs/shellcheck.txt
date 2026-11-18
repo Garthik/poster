@@ -1,0 +1,1 @@
+PASS ShellCheck v0.10.0

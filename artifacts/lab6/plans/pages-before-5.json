@@ -1,0 +1,221 @@
+{
+  "explainVersion": "1",
+  "queryPlanner": {
+    "namespace": "ticket_platform_docs.event_pages",
+    "indexFilterSet": false,
+    "parsedQuery": {
+      "$and": [
+        {
+          "editor.alias": {
+            "$eq": "editor-07"
+          }
+        },
+        {
+          "status": {
+            "$eq": "published"
+          }
+        }
+      ]
+    },
+    "queryHash": "E9C77AD2",
+    "planCacheKey": "79987282",
+    "optimizationTimeMillis": 0,
+    "maxIndexedOrSolutionsReached": false,
+    "maxIndexedAndSolutionsReached": false,
+    "maxScansToExplodeReached": false,
+    "winningPlan": {
+      "stage": "SORT",
+      "sortPattern": {
+        "headline": 1,
+        "_id": 1
+      },
+      "memLimit": 104857600,
+      "limitAmount": 100,
+      "type": "simple",
+      "inputStage": {
+        "stage": "FETCH",
+        "filter": {
+          "editor.alias": {
+            "$eq": "editor-07"
+          }
+        },
+        "inputStage": {
+          "stage": "IXSCAN",
+          "keyPattern": {
+            "status": 1,
+            "keywords": 1
+          },
+          "indexName": "status_1_keywords_1",
+          "isMultiKey": true,
+          "multiKeyPaths": {
+            "status": [],
+            "keywords": [
+              "keywords"
+            ]
+          },
+          "isUnique": false,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "status": [
+              "[\"published\", \"published\"]"
+            ],
+            "keywords": [
+              "[MinKey, MaxKey]"
+            ]
+          }
+        }
+      }
+    },
+    "rejectedPlans": []
+  },
+  "executionStats": {
+    "executionSuccess": true,
+    "nReturned": 100,
+    "executionTimeMillis": 14,
+    "totalKeysExamined": 18000,
+    "totalDocsExamined": 9000,
+    "executionStages": {
+      "stage": "SORT",
+      "nReturned": 100,
+      "executionTimeMillisEstimate": 2,
+      "works": 18102,
+      "advanced": 100,
+      "needTime": 18001,
+      "needYield": 0,
+      "saveState": 18,
+      "restoreState": 18,
+      "isEOF": 1,
+      "sortPattern": {
+        "headline": 1,
+        "_id": 1
+      },
+      "memLimit": 104857600,
+      "limitAmount": 100,
+      "type": "simple",
+      "totalDataSizeSorted": 58200,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "inputStage": {
+        "stage": "FETCH",
+        "filter": {
+          "editor.alias": {
+            "$eq": "editor-07"
+          }
+        },
+        "nReturned": 600,
+        "executionTimeMillisEstimate": 2,
+        "works": 18001,
+        "advanced": 600,
+        "needTime": 17400,
+        "needYield": 0,
+        "saveState": 18,
+        "restoreState": 18,
+        "isEOF": 1,
+        "docsExamined": 9000,
+        "alreadyHasObj": 0,
+        "inputStage": {
+          "stage": "IXSCAN",
+          "nReturned": 9000,
+          "executionTimeMillisEstimate": 2,
+          "works": 18001,
+          "advanced": 9000,
+          "needTime": 9000,
+          "needYield": 0,
+          "saveState": 18,
+          "restoreState": 18,
+          "isEOF": 1,
+          "keyPattern": {
+            "status": 1,
+            "keywords": 1
+          },
+          "indexName": "status_1_keywords_1",
+          "isMultiKey": true,
+          "multiKeyPaths": {
+            "status": [],
+            "keywords": [
+              "keywords"
+            ]
+          },
+          "isUnique": false,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "status": [
+              "[\"published\", \"published\"]"
+            ],
+            "keywords": [
+              "[MinKey, MaxKey]"
+            ]
+          },
+          "keysExamined": 18000,
+          "seeks": 1,
+          "dupsTested": 18000,
+          "dupsDropped": 9000
+        }
+      }
+    }
+  },
+  "command": {
+    "find": "event_pages",
+    "filter": {
+      "status": "published",
+      "editor.alias": "editor-07"
+    },
+    "sort": {
+      "headline": 1,
+      "_id": 1
+    },
+    "limit": 100,
+    "readConcern": {
+      "level": "majority"
+    },
+    "$db": "ticket_platform_docs"
+  },
+  "serverInfo": {
+    "host": "mongo3",
+    "port": 27103,
+    "version": "7.0.45",
+    "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "forceClassicEngine"
+  },
+  "ok": 1,
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": {
+        "t": 1794985773,
+        "i": 6
+      }
+    },
+    "signature": {
+      "hash": {
+        "$binary": {
+          "base64": "0Tx7Xv11gmwBUk3Zk84h0jQdv1w=",
+          "subType": "00"
+        }
+      },
+      "keyId": 7704318133770650000
+    }
+  },
+  "operationTime": {
+    "$timestamp": {
+      "t": 1794985773,
+      "i": 6
+    }
+  }
+}

@@ -1,0 +1,149 @@
+ Container ticket-platform-lab6-mongo2-1  Running
+ Container ticket-platform-lab6-mongo1-1  Running
+ Container ticket-platform-lab6-mongo3-1  Running
+ Container ticket-platform-lab6-mongo1-1  Waiting
+ Container ticket-platform-lab6-mongo2-1  Waiting
+ Container ticket-platform-lab6-mongo3-1  Waiting
+ Container ticket-platform-lab6-mongo1-1  Healthy
+ Container ticket-platform-lab6-mongo2-1  Healthy
+ Container ticket-platform-lab6-mongo3-1  Healthy
+OK: schema validation and indexes installed for 3 collections
+PASS: rs0 initialized; Lab5 schema reused; application user ready
+#1 [internal] load local bake definitions
+#1 reading from stdin 568B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 367B 0.0s done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-bookworm-slim
+#3 DONE 2.3s
+
+#4 [1/6] FROM docker.io/library/node:22-bookworm-slim@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da
+#4 resolve docker.io/library/node:22-bookworm-slim@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 4.41kB 0.1s done
+#5 DONE 0.1s
+
+#6 [2/6] WORKDIR /opt/lab6/mongo/lab6
+#6 CACHED
+
+#7 [3/6] COPY mongo/lab6/package*.json ./
+#7 CACHED
+
+#8 [4/6] RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
+#8 CACHED
+
+#9 [5/6] COPY mongo/lab6/ ./
+#9 DONE 0.0s
+
+#10 [6/6] COPY tests/lab6/ /opt/lab6/tests/lab6/
+#10 DONE 0.0s
+
+#11 exporting to docker image format
+#11 exporting layers 0.1s done
+#11 exporting manifest sha256:b12186618a929a7d32713eb66cc58deb660273b271339cf8ff08703c16973254 0.0s done
+#11 exporting config sha256:3486059eeb7cc56d06387652dc9ae8800b13b0b3dce2777abe16d10b985d3465 0.0s done
+#11 sending tarball
+#11 sending tarball 0.4s done
+#11 DONE 0.5s
+
+#12 importing to docker
+#12 loading layer 08c8f0f69f7a 16.59kB / 16.59kB 0.1s done
+#12 loading layer 8041db26cdd9 2.81kB / 2.81kB 0.0s done
+#12 DONE 0.1s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+ ticket-platform-lab6-runner  Built
+mongo1:27101: SECONDARY health=1
+mongo2:27102: PRIMARY health=1
+mongo3:27103: SECONDARY health=1
+PASS: rs0: 3 data-bearing voters; 1 PRIMARY and 2 SECONDARY
+PASS: deterministic seed=20261104: 12000 pages, 60000 feedback; sha256=0c6d57575e3d62b7ffc9c455a54b4d443df4b20faacd59de28f2f8ac7e51736e
+feedback before: FETCH|IXSCAN|SORT; indexes=pageSlug_1_moderation_1
+feedback after: FETCH|IXSCAN|LIMIT; indexes=lab6_feedback_page_moderation_created_id
+pages before: FETCH|IXSCAN|SORT; indexes=status_1_keywords_1
+pages after: FETCH|IXSCAN|LIMIT; indexes=lab6_pages_status_editor_headline_id
+PASS: 2 indexed business queries; complete plans, raw CSV and recalculated medians
+PASS: bulkWrite: 500 inserted, 500 modified, 2 expected errors; replay adds no duplicates; fixtures cleaned
+PASS: COMMIT, cross-collection ROLLBACK, server TTE/UnknownCommit labels, lost reply, idempotent receipt replay
+PASS: same-data write/update benchmark, alternating order, medians/throughput and complete collStats; fixtures cleaned
+TAP version 13
+# Subtest: median handles odd/even series, preserves input, rejects missing/nonfinite samples
+ok 1 - median handles odd/even series, preserves input, rejects missing/nonfinite samples
+  ---
+  duration_ms: 2.450626
+  type: 'test'
+  ...
+# Subtest: plans count only winning/executed stages, excluding rejected alternatives
+ok 2 - plans count only winning/executed stages, excluding rejected alternatives
+  ---
+  duration_ms: 0.349652
+  type: 'test'
+  ...
+# Subtest: CSV escapes commas, quotes, and actual line breaks
+ok 3 - CSV escapes commas, quotes, and actual line breaks
+  ---
+  duration_ms: 0.315656
+  type: 'test'
+  ...
+# Subtest: fixtures are deterministic for same seed and change with a different seed
+ok 4 - fixtures are deterministic for same seed and change with a different seed
+  ---
+  duration_ms: 0.987907
+  type: 'test'
+  ...
+# Subtest: TransientTransactionError aborts and reruns the entire body
+ok 5 - TransientTransactionError aborts and reruns the entire body
+  ---
+  duration_ms: 1.279777
+  type: 'test'
+  ...
+# Subtest: UnknownTransactionCommitResult retries the same commit without rerunning body
+ok 6 - UnknownTransactionCommitResult retries the same commit without rerunning body
+  ---
+  duration_ms: 0.428975
+  type: 'test'
+  ...
+# Subtest: unknown commit exhaustion exposes stable operation ID and does not start another body
+ok 7 - unknown commit exhaustion exposes stable operation ID and does not start another body
+  ---
+  duration_ms: 0.930227
+  type: 'test'
+  ...
+# Subtest: transient body retries are bounded; terminal failure is propagated
+ok 8 - transient body retries are bounded; terminal failure is propagated
+  ---
+  duration_ms: 0.501457
+  type: 'test'
+  ...
+# Subtest: ordinary business errors abort immediately and do not retry
+ok 9 - ordinary business errors abort immediately and do not retry
+  ---
+  duration_ms: 0.402023
+  type: 'test'
+  ...
+# Subtest: TransientTransactionError at commit restarts body, preserving retry scope
+ok 10 - TransientTransactionError at commit restarts body, preserving retry scope
+  ---
+  duration_ms: 0.547805
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 200.900184
+mongo1:27101: SECONDARY health=1
+mongo2:27102: PRIMARY health=1
+mongo3:27103: SECONDARY health=1
+PASS: rs0: 3 data-bearing voters; 1 PRIMARY and 2 SECONDARY
+PASS: semantic artifact verification and live indexes/fixtures/validators

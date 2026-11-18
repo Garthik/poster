@@ -1,0 +1,74 @@
+ Network ticket-platform-lab6_default  Creating
+ Network ticket-platform-lab6_default  Created
+ Container ticket-platform-lab6-mongo2-1  Creating
+ Container ticket-platform-lab6-mongo1-1  Creating
+ Container ticket-platform-lab6-mongo3-1  Creating
+ Container ticket-platform-lab6-mongo2-1  Created
+ Container ticket-platform-lab6-mongo3-1  Created
+ Container ticket-platform-lab6-mongo1-1  Created
+ Container ticket-platform-lab6-mongo2-1  Starting
+ Container ticket-platform-lab6-mongo1-1  Starting
+ Container ticket-platform-lab6-mongo3-1  Starting
+ Container ticket-platform-lab6-mongo3-1  Started
+ Container ticket-platform-lab6-mongo1-1  Started
+ Container ticket-platform-lab6-mongo2-1  Started
+ Container ticket-platform-lab6-mongo1-1  Waiting
+ Container ticket-platform-lab6-mongo2-1  Waiting
+ Container ticket-platform-lab6-mongo3-1  Waiting
+ Container ticket-platform-lab6-mongo2-1  Healthy
+ Container ticket-platform-lab6-mongo3-1  Healthy
+ Container ticket-platform-lab6-mongo1-1  Healthy
+OK: schema validation and indexes installed for 3 collections
+PASS: rs0 initialized; Lab5 schema reused; application user ready
+#1 [internal] load local bake definitions
+#1 reading from stdin 568B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 367B 0.0s done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-bookworm-slim
+#3 DONE 0.6s
+
+#4 [1/6] FROM docker.io/library/node:22-bookworm-slim@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da
+#4 resolve docker.io/library/node:22-bookworm-slim@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 1.02kB 0.1s done
+#5 DONE 0.1s
+
+#6 [2/6] WORKDIR /opt/lab6/mongo/lab6
+#6 CACHED
+
+#7 [3/6] COPY mongo/lab6/package*.json ./
+#7 CACHED
+
+#8 [4/6] RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
+#8 CACHED
+
+#9 [5/6] COPY mongo/lab6/ ./
+#9 CACHED
+
+#10 [6/6] COPY tests/lab6/ /opt/lab6/tests/lab6/
+#10 CACHED
+
+#11 exporting to docker image format
+#11 exporting layers done
+#11 exporting manifest sha256:b12186618a929a7d32713eb66cc58deb660273b271339cf8ff08703c16973254 done
+#11 exporting config sha256:3486059eeb7cc56d06387652dc9ae8800b13b0b3dce2777abe16d10b985d3465 done
+#11 sending tarball
+#11 sending tarball 1.0s done
+#11 DONE 1.1s
+
+#12 importing to docker
+#12 DONE 0.0s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+ ticket-platform-lab6-runner  Built
+mongo1:27101: SECONDARY health=1
+mongo2:27102: PRIMARY health=1
+mongo3:27103: SECONDARY health=1
+PASS: rs0: 3 data-bearing voters; 1 PRIMARY and 2 SECONDARY

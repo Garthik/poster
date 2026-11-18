@@ -1,0 +1,2 @@
+PASS static: 8 query catalog / criteria {'aggregates': 8, 'window': 3, 'cte': 3, 'joins': 8}
+PASS static: 3 validated Mongo collections, CRUD, sync, comparison, versioning

@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "ordered": false,
+  "operationTypes": [
+    "insertOne",
+    "updateOne"
+  ],
+  "attempted": 1002,
+  "partial": {
+    "inserted": 500,
+    "matched": 500,
+    "modified": 500,
+    "successful": 1000,
+    "failed": 2,
+    "failures": [
+      {
+        "index": 500,
+        "code": 121,
+        "message": "Document failed validation"
+      },
+      {
+        "index": 501,
+        "code": 11000,
+        "message": "E11000 duplicate key error collection: ticket_platform_docs.visitor_feedback index: _id_ dup key: { _id: \"lab6-bulk-existing-000000\" }"
+      }
+    ]
+  },
+  "replay": {
+    "matched": 1000,
+    "modified": 0,
+    "upserted": 0
+  },
+  "reason": "Different documents are independent; unordered execution allows valid writes after rejected inserts.",
+  "timestamp": {
+    "$date": "2026-11-05T18:08:02.983Z"
+  },
+  "cleaned": true
+}

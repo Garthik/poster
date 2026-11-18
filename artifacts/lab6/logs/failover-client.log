@@ -1,0 +1,1 @@
+PASS: failover mongo1:27101 -> mongo2:27102; existing client recovered; old primary SECONDARY with new data

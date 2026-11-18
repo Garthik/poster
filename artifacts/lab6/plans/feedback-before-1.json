@@ -1,0 +1,207 @@
+{
+  "explainVersion": "1",
+  "queryPlanner": {
+    "namespace": "ticket_platform_docs.visitor_feedback",
+    "indexFilterSet": false,
+    "parsedQuery": {
+      "$and": [
+        {
+          "moderation": {
+            "$eq": "approved"
+          }
+        },
+        {
+          "pageSlug": {
+            "$eq": "lab6-seed-page-000007"
+          }
+        }
+      ]
+    },
+    "queryHash": "30E72ABB",
+    "planCacheKey": "BAD75C12",
+    "optimizationTimeMillis": 0,
+    "maxIndexedOrSolutionsReached": false,
+    "maxIndexedAndSolutionsReached": false,
+    "maxScansToExplodeReached": false,
+    "winningPlan": {
+      "stage": "SORT",
+      "sortPattern": {
+        "createdAt": -1,
+        "_id": 1
+      },
+      "memLimit": 104857600,
+      "limitAmount": 100,
+      "type": "simple",
+      "inputStage": {
+        "stage": "FETCH",
+        "inputStage": {
+          "stage": "IXSCAN",
+          "keyPattern": {
+            "pageSlug": 1,
+            "moderation": 1
+          },
+          "indexName": "pageSlug_1_moderation_1",
+          "isMultiKey": false,
+          "multiKeyPaths": {
+            "pageSlug": [],
+            "moderation": []
+          },
+          "isUnique": false,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "pageSlug": [
+              "[\"lab6-seed-page-000007\", \"lab6-seed-page-000007\"]"
+            ],
+            "moderation": [
+              "[\"approved\", \"approved\"]"
+            ]
+          }
+        }
+      }
+    },
+    "rejectedPlans": []
+  },
+  "executionStats": {
+    "executionSuccess": true,
+    "nReturned": 100,
+    "executionTimeMillis": 4,
+    "totalKeysExamined": 593,
+    "totalDocsExamined": 593,
+    "executionStages": {
+      "stage": "SORT",
+      "nReturned": 100,
+      "executionTimeMillisEstimate": 0,
+      "works": 695,
+      "advanced": 100,
+      "needTime": 594,
+      "needYield": 0,
+      "saveState": 0,
+      "restoreState": 0,
+      "isEOF": 1,
+      "sortPattern": {
+        "createdAt": -1,
+        "_id": 1
+      },
+      "memLimit": 104857600,
+      "limitAmount": 100,
+      "type": "simple",
+      "totalDataSizeSorted": 60280,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "inputStage": {
+        "stage": "FETCH",
+        "nReturned": 593,
+        "executionTimeMillisEstimate": 0,
+        "works": 594,
+        "advanced": 593,
+        "needTime": 0,
+        "needYield": 0,
+        "saveState": 0,
+        "restoreState": 0,
+        "isEOF": 1,
+        "docsExamined": 593,
+        "alreadyHasObj": 0,
+        "inputStage": {
+          "stage": "IXSCAN",
+          "nReturned": 593,
+          "executionTimeMillisEstimate": 0,
+          "works": 594,
+          "advanced": 593,
+          "needTime": 0,
+          "needYield": 0,
+          "saveState": 0,
+          "restoreState": 0,
+          "isEOF": 1,
+          "keyPattern": {
+            "pageSlug": 1,
+            "moderation": 1
+          },
+          "indexName": "pageSlug_1_moderation_1",
+          "isMultiKey": false,
+          "multiKeyPaths": {
+            "pageSlug": [],
+            "moderation": []
+          },
+          "isUnique": false,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "pageSlug": [
+              "[\"lab6-seed-page-000007\", \"lab6-seed-page-000007\"]"
+            ],
+            "moderation": [
+              "[\"approved\", \"approved\"]"
+            ]
+          },
+          "keysExamined": 593,
+          "seeks": 1,
+          "dupsTested": 0,
+          "dupsDropped": 0
+        }
+      }
+    }
+  },
+  "command": {
+    "find": "visitor_feedback",
+    "filter": {
+      "pageSlug": "lab6-seed-page-000007",
+      "moderation": "approved"
+    },
+    "sort": {
+      "createdAt": -1,
+      "_id": 1
+    },
+    "limit": 100,
+    "readConcern": {
+      "level": "majority"
+    },
+    "$db": "ticket_platform_docs"
+  },
+  "serverInfo": {
+    "host": "mongo3",
+    "port": 27103,
+    "version": "7.0.45",
+    "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "forceClassicEngine"
+  },
+  "ok": 1,
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": {
+        "t": 1794985772,
+        "i": 1
+      }
+    },
+    "signature": {
+      "hash": {
+        "$binary": {
+          "base64": "Q4yXqTB6UIRtt51UYPQjD2eAATY=",
+          "subType": "00"
+        }
+      },
+      "keyId": 7704318133770650000
+    }
+  },
+  "operationTime": {
+    "$timestamp": {
+      "t": 1794985772,
+      "i": 1
+    }
+  }
+}

@@ -1,0 +1,2 @@
+Disruptive test stops the current Lab6 PRIMARY. Explicit command: bash scripts/lab6.sh failover --yes
+Guard exit=2 (expected 2)

@@ -1,0 +1,5 @@
+feedback before: FETCH|IXSCAN|SORT; indexes=pageSlug_1_moderation_1
+feedback after: FETCH|IXSCAN|LIMIT; indexes=lab6_feedback_page_moderation_created_id
+pages before: FETCH|IXSCAN|SORT; indexes=status_1_keywords_1
+pages after: FETCH|IXSCAN|LIMIT; indexes=lab6_pages_status_editor_headline_id
+PASS: 2 indexed business queries; complete plans, raw CSV and recalculated medians

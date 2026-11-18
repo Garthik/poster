@@ -1,0 +1,3 @@
+"phase","runs","count","insertMillis","insertDocsPerSecond","updateMillis","updateDocsPerSecond","logicalDataBytes","storageBytes","indexBytes","afterUpdateIndexBytes"
+"before","5","6000","160.85889999999972","37299.770171249525","342.9570189999995","17494.90363980569","2751476","5566464","3133440","3133440"
+"after","5","6000","194.92176000000018","30781.58128676857","480.2731410000006","12492.89099845788","2751476","5447680","5189632","5206016"

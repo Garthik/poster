@@ -1,0 +1,4 @@
+mongo1:27101: SECONDARY health=1
+mongo2:27102: PRIMARY health=1
+mongo3:27103: SECONDARY health=1
+PASS: rs0: 3 data-bearing voters; 1 PRIMARY and 2 SECONDARY

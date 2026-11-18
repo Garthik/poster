@@ -1,0 +1,6 @@
+# Keep new executable scripts compatible with WSL when core.autocrlf is enabled.
+scripts/lab6.sh text eol=lf
+scripts/lab6/** text eol=lf
+mongo/lab6/** text eol=lf
+tests/lab6/** text eol=lf
+docker-compose.lab6.yml text eol=lf

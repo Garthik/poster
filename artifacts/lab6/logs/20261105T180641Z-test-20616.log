@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: median handles odd/even series, preserves input, rejects missing/nonfinite samples
+ok 1 - median handles odd/even series, preserves input, rejects missing/nonfinite samples
+  ---
+  duration_ms: 2.723074
+  type: 'test'
+  ...
+# Subtest: plans count only winning/executed stages, excluding rejected alternatives
+ok 2 - plans count only winning/executed stages, excluding rejected alternatives
+  ---
+  duration_ms: 0.229024
+  type: 'test'
+  ...
+# Subtest: CSV escapes commas, quotes, and actual line breaks
+ok 3 - CSV escapes commas, quotes, and actual line breaks
+  ---
+  duration_ms: 0.243277
+  type: 'test'
+  ...
+# Subtest: fixtures are deterministic for same seed and change with a different seed
+ok 4 - fixtures are deterministic for same seed and change with a different seed
+  ---
+  duration_ms: 0.690853
+  type: 'test'
+  ...
+# Subtest: TransientTransactionError aborts and reruns the entire body
+ok 5 - TransientTransactionError aborts and reruns the entire body
+  ---
+  duration_ms: 1.157335
+  type: 'test'
+  ...
+# Subtest: UnknownTransactionCommitResult retries the same commit without rerunning body
+ok 6 - UnknownTransactionCommitResult retries the same commit without rerunning body
+  ---
+  duration_ms: 0.23872
+  type: 'test'
+  ...
+# Subtest: unknown commit exhaustion exposes stable operation ID and does not start another body
+ok 7 - unknown commit exhaustion exposes stable operation ID and does not start another body
+  ---
+  duration_ms: 0.563736
+  type: 'test'
+  ...
+# Subtest: transient body retries are bounded; terminal failure is propagated
+ok 8 - transient body retries are bounded; terminal failure is propagated
+  ---
+  duration_ms: 0.250549
+  type: 'test'
+  ...
+# Subtest: ordinary business errors abort immediately and do not retry
+ok 9 - ordinary business errors abort immediately and do not retry
+  ---
+  duration_ms: 0.213704
+  type: 'test'
+  ...
+# Subtest: TransientTransactionError at commit restarts body, preserving retry scope
+ok 10 - TransientTransactionError at commit restarts body, preserving retry scope
+  ---
+  duration_ms: 0.322689
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 163.121345

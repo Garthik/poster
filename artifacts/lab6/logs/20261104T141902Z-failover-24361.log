@@ -1,0 +1,16 @@
+mongo1:27101: PRIMARY health=1
+mongo2:27102: SECONDARY health=1
+mongo3:27103: SECONDARY health=1
+PASS: rs0: 3 data-bearing voters; 1 PRIMARY and 2 SECONDARY
+Stopping dynamically discovered PRIMARY service: mongo1
+ Container ticket-platform-lab6-mongo1-1  Stopping
+ Container ticket-platform-lab6-mongo1-1  Stopped
+ Container ticket-platform-lab6-mongo1-1  Starting
+ Container ticket-platform-lab6-mongo1-1  Started
+Failover client process exit code: <0>
+PASS: failover mongo1:27101 -> mongo2:27102; existing client recovered; old primary SECONDARY with new data
+mongo1:27101: SECONDARY health=1
+mongo2:27102: PRIMARY health=1
+mongo3:27103: SECONDARY health=1
+PASS: rs0: 3 data-bearing voters; 1 PRIMARY and 2 SECONDARY
+PASS: semantic artifact verification and live indexes/fixtures/validators including failover

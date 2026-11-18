@@ -1,0 +1,82 @@
+name: ticket-platform-lab6
+
+x-mongo: &mongo
+  image: mongo:7.0
+  restart: unless-stopped
+  mem_limit: 768m
+  entrypoint: [bash, /work/mongo/lab6/start-mongo.sh]
+  environment:
+    MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/root_user
+    MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/root_password
+  secrets: [root_user, root_password, app_password, rs_keyfile]
+  volumes:
+    - ./mongo:/work/mongo:ro
+  healthcheck:
+    test: [CMD-SHELL, 'mongosh --quiet --port $$MONGO_PORT --eval "const h=db.hello(); if(h.setName !== ''rs0'' && !h.isreplicaset) quit(1)"']
+    interval: 3s
+    timeout: 5s
+    retries: 60
+    start_period: 15s
+
+services:
+  mongo1:
+    <<: *mongo
+    hostname: mongo1
+    environment:
+      MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/root_user
+      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/root_password
+      MONGO_PORT: '27101'
+    command: [mongod, --replSet, rs0, --bind_ip_all, --port, '27101', --keyFile, /run/lab6-keyfile, --wiredTigerCacheSizeGB, '0.25', --setParameter, enableTestCommands=1]
+    ports: ['127.0.0.1:27101:27101']
+    volumes: [lab6_mongo1:/data/db, './mongo:/work/mongo:ro']
+  mongo2:
+    <<: *mongo
+    hostname: mongo2
+    environment:
+      MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/root_user
+      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/root_password
+      MONGO_PORT: '27102'
+    command: [mongod, --replSet, rs0, --bind_ip_all, --port, '27102', --keyFile, /run/lab6-keyfile, --wiredTigerCacheSizeGB, '0.25', --setParameter, enableTestCommands=1]
+    ports: ['127.0.0.1:27102:27102']
+    volumes: [lab6_mongo2:/data/db, './mongo:/work/mongo:ro']
+  mongo3:
+    <<: *mongo
+    hostname: mongo3
+    environment:
+      MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/root_user
+      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/root_password
+      MONGO_PORT: '27103'
+    command: [mongod, --replSet, rs0, --bind_ip_all, --port, '27103', --keyFile, /run/lab6-keyfile, --wiredTigerCacheSizeGB, '0.25', --setParameter, enableTestCommands=1]
+    ports: ['127.0.0.1:27103:27103']
+    volumes: [lab6_mongo3:/data/db, './mongo:/work/mongo:ro']
+  runner:
+    profiles: [tools]
+    build:
+      context: .
+      dockerfile: mongo/lab6/Dockerfile
+    init: true
+    environment:
+      LAB6_ARTIFACTS: /work/artifacts/lab6
+      LAB6_PG_SNAPSHOT: /work/artifacts/lab5/pg_events.json
+      LAB6_SEED: ${LAB6_SEED:-20261104}
+      LAB6_FEEDBACK_COUNT: ${LAB6_FEEDBACK_COUNT:-60000}
+      LAB6_PAGE_COUNT: ${LAB6_PAGE_COUNT:-12000}
+      LAB6_WRITE_COUNT: ${LAB6_WRITE_COUNT:-6000}
+      LAB6_RUNS: ${LAB6_RUNS:-5}
+    secrets: [root_user, root_password, app_password]
+    volumes:
+      - ./artifacts:/work/artifacts
+
+volumes:
+  lab6_mongo1:
+  lab6_mongo2:
+  lab6_mongo3:
+secrets:
+  root_user:
+    file: ${TICKET_SECRETS_DIR:?Run bash scripts/lab6.sh init}/lab6/root-user
+  root_password:
+    file: ${TICKET_SECRETS_DIR}/lab6/root-password
+  app_password:
+    file: ${TICKET_SECRETS_DIR}/lab6/app-password
+  rs_keyfile:
+    file: ${TICKET_SECRETS_DIR}/lab6/rs-keyfile

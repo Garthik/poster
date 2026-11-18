@@ -1,0 +1,172 @@
+{
+  "passed": true,
+  "sha256": "27242f649159ff746747c97a71e0158845ed08a551a09d5092f0df9a8b95d2e5",
+  "seed": 20261104,
+  "warmups": 1,
+  "runs": 5,
+  "count": 6000,
+  "rows": [
+    {
+      "phase": "before",
+      "run": 1,
+      "count": 6000,
+      "insertMillis": 160.85889999999972,
+      "insertDocsPerSecond": 37299.770171249525,
+      "updateMillis": 372.85879799999975,
+      "updateDocsPerSecond": 16091.882589826952,
+      "logicalDataBytes": 2751476,
+      "storageBytes": 5566464,
+      "indexBytes": 3133440,
+      "afterUpdateIndexBytes": 3133440
+    },
+    {
+      "phase": "after",
+      "run": 1,
+      "count": 6000,
+      "insertMillis": 173.83316400000012,
+      "insertDocsPerSecond": 34515.8533730652,
+      "updateMillis": 457.75114299999996,
+      "updateDocsPerSecond": 13107.55875054145,
+      "logicalDataBytes": 2751476,
+      "storageBytes": 5447680,
+      "indexBytes": 4182016,
+      "afterUpdateIndexBytes": 4182016
+    },
+    {
+      "phase": "after",
+      "run": 2,
+      "count": 6000,
+      "insertMillis": 194.92176000000018,
+      "insertDocsPerSecond": 30781.58128676857,
+      "updateMillis": 464.56510700000035,
+      "updateDocsPerSecond": 12915.304893959665,
+      "logicalDataBytes": 2751476,
+      "storageBytes": 5447680,
+      "indexBytes": 4583424,
+      "afterUpdateIndexBytes": 4812800
+    },
+    {
+      "phase": "before",
+      "run": 2,
+      "count": 6000,
+      "insertMillis": 152.28946900000028,
+      "insertDocsPerSecond": 39398.65336322099,
+      "updateMillis": 333.3662199999999,
+      "updateDocsPerSecond": 17998.22429519104,
+      "logicalDataBytes": 2751476,
+      "storageBytes": 5566464,
+      "indexBytes": 3133440,
+      "afterUpdateIndexBytes": 3133440
+    },
+    {
+      "phase": "before",
+      "run": 3,
+      "count": 6000,
+      "insertMillis": 162.5854760000002,
+      "insertDocsPerSecond": 36903.66536799383,
+      "updateMillis": 462.6154839999999,
+      "updateDocsPerSecond": 12969.734493365988,
+      "logicalDataBytes": 2751476,
+      "storageBytes": 5566464,
+      "indexBytes": 3133440,
+      "afterUpdateIndexBytes": 3133440
+    },
+    {
+      "phase": "after",
+      "run": 3,
+      "count": 6000,
+      "insertMillis": 218.30123699999967,
+      "insertDocsPerSecond": 27484.95648698504,
+      "updateMillis": 480.2731410000006,
+      "updateDocsPerSecond": 12492.89099845788,
+      "logicalDataBytes": 2751476,
+      "storageBytes": 5447680,
+      "indexBytes": 5189632,
+      "afterUpdateIndexBytes": 5206016
+    },
+    {
+      "phase": "after",
+      "run": 4,
+      "count": 6000,
+      "insertMillis": 192.91806999999972,
+      "insertDocsPerSecond": 31101.285639028054,
+      "updateMillis": 498.6425870000003,
+      "updateDocsPerSecond": 12032.666596124483,
+      "logicalDataBytes": 2751476,
+      "storageBytes": 5447680,
+      "indexBytes": 5292032,
+      "afterUpdateIndexBytes": 5652480
+    },
+    {
+      "phase": "before",
+      "run": 4,
+      "count": 6000,
+      "insertMillis": 143.8705799999998,
+      "insertDocsPerSecond": 41704.14826992432,
+      "updateMillis": 337.01074400000016,
+      "updateDocsPerSecond": 17803.586701081545,
+      "logicalDataBytes": 2751476,
+      "storageBytes": 5566464,
+      "indexBytes": 3133440,
+      "afterUpdateIndexBytes": 3133440
+    },
+    {
+      "phase": "before",
+      "run": 5,
+      "count": 6000,
+      "insertMillis": 167.91822400000092,
+      "insertDocsPerSecond": 35731.67853418916,
+      "updateMillis": 342.9570189999995,
+      "updateDocsPerSecond": 17494.90363980569,
+      "logicalDataBytes": 2751476,
+      "storageBytes": 5566464,
+      "indexBytes": 3133440,
+      "afterUpdateIndexBytes": 3133440
+    },
+    {
+      "phase": "after",
+      "run": 5,
+      "count": 6000,
+      "insertMillis": 306.02417400000013,
+      "insertDocsPerSecond": 19606.294240009935,
+      "updateMillis": 544.4246770000009,
+      "updateDocsPerSecond": 11020.808301824993,
+      "logicalDataBytes": 2751476,
+      "storageBytes": 5447680,
+      "indexBytes": 5931008,
+      "afterUpdateIndexBytes": 6029312
+    }
+  ],
+  "summary": [
+    {
+      "phase": "before",
+      "runs": 5,
+      "count": 6000,
+      "insertMillis": 160.85889999999972,
+      "insertDocsPerSecond": 37299.770171249525,
+      "updateMillis": 342.9570189999995,
+      "updateDocsPerSecond": 17494.90363980569,
+      "logicalDataBytes": 2751476,
+      "storageBytes": 5566464,
+      "indexBytes": 3133440,
+      "afterUpdateIndexBytes": 3133440
+    },
+    {
+      "phase": "after",
+      "runs": 5,
+      "count": 6000,
+      "insertMillis": 194.92176000000018,
+      "insertDocsPerSecond": 30781.58128676857,
+      "updateMillis": 480.2731410000006,
+      "updateDocsPerSecond": 12492.89099845788,
+      "logicalDataBytes": 2751476,
+      "storageBytes": 5447680,
+      "indexBytes": 5189632,
+      "afterUpdateIndexBytes": 5206016
+    }
+  ],
+  "cleaned": true,
+  "timestamp": {
+    "$date": "2026-11-05T18:11:43.110Z"
+  }
+}

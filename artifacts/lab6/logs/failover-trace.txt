@@ -1,0 +1,143 @@
++ set -euo pipefail
+++ dirname scripts/lab6/failover.sh
++ source scripts/lab6/lib.sh
+++ set -euo pipefail
+++++ dirname scripts/lab6/lib.sh
++++ cd scripts/lab6/../..
++++ pwd
+++ ROOT_DIR=/mnt/c/TomeD/VSCode/Proga/Afisha/poster
+++ export TICKET_SECRETS_DIR=/home/cloun/.local/share/ticket-platform-ha
+++ TICKET_SECRETS_DIR=/home/cloun/.local/share/ticket-platform-ha
+++ LAB6_PRIVATE=/home/cloun/.local/share/ticket-platform-ha/lab6
+++ LAB6_ARTIFACTS=/mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6
+++ mkdir -p /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/logs
++ require_secrets
++ local file
++ for file in root-user root-password app-password rs-keyfile
++ [[ -s /home/cloun/.local/share/ticket-platform-ha/lab6/root-user ]]
++ for file in root-user root-password app-password rs-keyfile
++ [[ -s /home/cloun/.local/share/ticket-platform-ha/lab6/root-password ]]
++ for file in root-user root-password app-password rs-keyfile
++ [[ -s /home/cloun/.local/share/ticket-platform-ha/lab6/app-password ]]
++ for file in root-user root-password app-password rs-keyfile
++ [[ -s /home/cloun/.local/share/ticket-platform-ha/lab6/rs-keyfile ]]
++ runner status
++ require_secrets
++ local file
++ for file in root-user root-password app-password rs-keyfile
++ [[ -s /home/cloun/.local/share/ticket-platform-ha/lab6/root-user ]]
++ for file in root-user root-password app-password rs-keyfile
++ [[ -s /home/cloun/.local/share/ticket-platform-ha/lab6/root-password ]]
++ for file in root-user root-password app-password rs-keyfile
++ [[ -s /home/cloun/.local/share/ticket-platform-ha/lab6/app-password ]]
++ for file in root-user root-password app-password rs-keyfile
++ [[ -s /home/cloun/.local/share/ticket-platform-ha/lab6/rs-keyfile ]]
++ compose run --rm -T --no-deps runner status
++ docker compose -f /mnt/c/TomeD/VSCode/Proga/Afisha/poster/docker-compose.lab6.yml run --rm -T --no-deps runner status
+mongo1:27101: SECONDARY health=1
+mongo2:27102: PRIMARY health=1
+mongo3:27103: SECONDARY health=1
+PASS: rs0: 3 data-bearing voters; 1 PRIMARY and 2 SECONDARY
++ control=/mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/control
++ mkdir -p /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/control
++ rm -f /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/control/ready /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/control/stopped /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/control/recovered /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/control/restarted /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/control/done /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/control/primary-service
++ target=
++ cid=
++ trap cleanup EXIT
++ trap 'exit 130' INT TERM
+++ compose run -d -T --no-deps runner failover-client
+++ docker compose -f /mnt/c/TomeD/VSCode/Proga/Afisha/poster/docker-compose.lab6.yml run -d -T --no-deps runner failover-client
++ cid=9064551bf5f746bb63c59b84c69dd87c90593c10ad308fe8bfedf4276a35815b
++ wait_file ready
++ local file=ready i
++ (( i=0 ))
++ (( i<180 ))
++ [[ -s /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/control/ready ]]
+++ docker inspect -f '{{.State.Running}}' 9064551bf5f746bb63c59b84c69dd87c90593c10ad308fe8bfedf4276a35815b
++ [[ true == true ]]
++ sleep 1
++ (( i++ ))
++ (( i<180 ))
++ [[ -s /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/control/ready ]]
++ return 0
++ read -r target
++ case "$target" in
++ printf 'Stopping dynamically discovered PRIMARY service: %s\n' mongo2
+Stopping dynamically discovered PRIMARY service: mongo2
++ compose stop -t 10 mongo2
++ docker compose -f /mnt/c/TomeD/VSCode/Proga/Afisha/poster/docker-compose.lab6.yml stop -t 10 mongo2
+ Container ticket-platform-lab6-mongo2-1  Stopping
+ Container ticket-platform-lab6-mongo2-1  Stopped
++ printf 'stopped\n'
++ wait_file recovered
++ local file=recovered i
++ (( i=0 ))
++ (( i<180 ))
++ [[ -s /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/control/recovered ]]
+++ docker inspect -f '{{.State.Running}}' 9064551bf5f746bb63c59b84c69dd87c90593c10ad308fe8bfedf4276a35815b
++ [[ true == true ]]
++ sleep 1
++ (( i++ ))
++ (( i<180 ))
++ [[ -s /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/control/recovered ]]
++ return 0
++ compose start mongo2
++ docker compose -f /mnt/c/TomeD/VSCode/Proga/Afisha/poster/docker-compose.lab6.yml start mongo2
+ Container ticket-platform-lab6-mongo2-1  Starting
+ Container ticket-platform-lab6-mongo2-1  Started
++ printf 'restarted\n'
++ wait_file done
++ local file=done i
++ (( i=0 ))
++ (( i<180 ))
++ [[ -s /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/control/done ]]
+++ docker inspect -f '{{.State.Running}}' 9064551bf5f746bb63c59b84c69dd87c90593c10ad308fe8bfedf4276a35815b
++ [[ true == true ]]
++ sleep 1
++ (( i++ ))
++ (( i<180 ))
++ [[ -s /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/control/done ]]
+++ docker inspect -f '{{.State.Running}}' 9064551bf5f746bb63c59b84c69dd87c90593c10ad308fe8bfedf4276a35815b
++ [[ true == true ]]
++ sleep 1
++ (( i++ ))
++ (( i<180 ))
++ [[ -s /mnt/c/TomeD/VSCode/Proga/Afisha/poster/artifacts/lab6/control/done ]]
++ return 0
+++ docker wait 9064551bf5f746bb63c59b84c69dd87c90593c10ad308fe8bfedf4276a35815b
++ exit_code=0
++ printf 'Failover client process exit code: <%s>\n' 0
+Failover client process exit code: <0>
++ docker inspect --format '{{json .State}}' 9064551bf5f746bb63c59b84c69dd87c90593c10ad308fe8bfedf4276a35815b
++ docker logs 9064551bf5f746bb63c59b84c69dd87c90593c10ad308fe8bfedf4276a35815b
+PASS: failover mongo2:27102 -> mongo1:27101; existing client recovered; old primary SECONDARY with new data
++ [[ 0 == 0 ]]
++ runner check --with-failover
++ require_secrets
++ local file
++ for file in root-user root-password app-password rs-keyfile
++ [[ -s /home/cloun/.local/share/ticket-platform-ha/lab6/root-user ]]
++ for file in root-user root-password app-password rs-keyfile
++ [[ -s /home/cloun/.local/share/ticket-platform-ha/lab6/root-password ]]
++ for file in root-user root-password app-password rs-keyfile
++ [[ -s /home/cloun/.local/share/ticket-platform-ha/lab6/app-password ]]
++ for file in root-user root-password app-password rs-keyfile
++ [[ -s /home/cloun/.local/share/ticket-platform-ha/lab6/rs-keyfile ]]
++ compose run --rm -T --no-deps runner check --with-failover
++ docker compose -f /mnt/c/TomeD/VSCode/Proga/Afisha/poster/docker-compose.lab6.yml run --rm -T --no-deps runner check --with-failover
+time="2026-11-04T21:18:12+07:00" level=warning msg="Found orphan containers ([ticket-platform-lab6-runner-run-368ce79c6a91]) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
+mongo1:27101: PRIMARY health=1
+mongo2:27102: SECONDARY health=1
+mongo3:27103: SECONDARY health=1
+PASS: rs0: 3 data-bearing voters; 1 PRIMARY and 2 SECONDARY
+PASS: semantic artifact verification and live indexes/fixtures/validators including failover
++ cleanup
++ local code=0
++ [[ -n mongo2 ]]
++ compose start mongo2
++ docker compose -f /mnt/c/TomeD/VSCode/Proga/Afisha/poster/docker-compose.lab6.yml start mongo2
++ [[ -n 9064551bf5f746bb63c59b84c69dd87c90593c10ad308fe8bfedf4276a35815b ]]
++ docker logs 9064551bf5f746bb63c59b84c69dd87c90593c10ad308fe8bfedf4276a35815b
++ docker rm -f 9064551bf5f746bb63c59b84c69dd87c90593c10ad308fe8bfedf4276a35815b
++ ((  code != 0  ))
++ exit 0

@@ -1,0 +1,4 @@
+NAME                            IMAGE       COMMAND                  SERVICE   CREATED       STATUS                 PORTS
+ticket-platform-lab6-mongo1-1   mongo:7.0   "bash /work/mongo/la…"   mongo1    13 days ago   Up 2 hours (healthy)   27017/tcp, 127.0.0.1:27101->27101/tcp
+ticket-platform-lab6-mongo2-1   mongo:7.0   "bash /work/mongo/la…"   mongo2    13 days ago   Up 2 hours (healthy)   27017/tcp, 127.0.0.1:27102->27102/tcp
+ticket-platform-lab6-mongo3-1   mongo:7.0   "bash /work/mongo/la…"   mongo3    13 days ago   Up 2 hours (healthy)   27017/tcp, 127.0.0.1:27103->27103/tcp

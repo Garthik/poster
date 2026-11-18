@@ -1,3 +1,20 @@
+# Спринт №6: MongoDB — индексы, транзакции и репликация
+
+Отдельный Replica Set из трёх MongoDB 7.0, официальный Node.js Driver, explain/CSV/медианы,
+Bulk API, атомарная публикация с retry и автоматический failover. Предыдущие стенды сохраняются.
+
+```bash
+bash scripts/lab6.sh init
+bash scripts/lab6.sh all
+bash scripts/lab6.sh failover --yes
+bash scripts/lab6.sh check --with-failover
+```
+
+[Запуск Sprint 6](docs/lab6/README.md) · [Подробная защита](docs/lab6/demo.md) ·
+[Автономная HTML-инструкция](demonstration-guide-lab6.html).
+
+---
+
 # Лабораторная №4: безопасный PostgreSQL и High Availability
 
 **Новая реализация:** `docker-compose.ha.yml`, `scripts/ha.sh`, `infra/ha/` и `docs/lab4-ha.md`.

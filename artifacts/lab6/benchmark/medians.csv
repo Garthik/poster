@@ -1,0 +1,5 @@
+"query","phase","runs","executionTimeMillis","totalDocsExamined","totalKeysExamined","nReturned","wallTimeMillis"
+"feedback","before","5","2","593","593","100","5.168946000000005"
+"feedback","after","5","0","100","100","100","2.867721999999958"
+"pages","before","5","15","9000","18000","100","17.624810000000025"
+"pages","after","5","0","100","100","100","1.9936090000001059"

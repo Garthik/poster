@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "seed": 20261104,
+  "pages": 12000,
+  "feedback": 60000,
+  "source": "Existing Lab5 pg_events.json (PostgreSQL export, not a new event source)",
+  "pgEventIds": [
+    "1",
+    "2",
+    "3"
+  ],
+  "sha256": "0c6d57575e3d62b7ffc9c455a54b4d443df4b20faacd59de28f2f8ac7e51736e",
+  "timestamp": {
+    "$date": "2026-11-18T06:53:11.237Z"
+  }
+}
