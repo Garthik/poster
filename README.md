@@ -1,3 +1,8 @@
+# Спринт №7. Аналитика MongoDB, шардирование и Redis
+
+[Отчёт, запросы для MongoDB Compass и команды запуска](docs/lab7/README.md) ·
+[Конвейеры агрегации](mongo/lab7/pipelines) · [Результаты двух стендов](artifacts/lab7).
+
 # Спринт №6: MongoDB — индексы, транзакции и репликация
 
 Отдельный Replica Set из трёх MongoDB 7.0, официальный Node.js Driver, explain/CSV/медианы,

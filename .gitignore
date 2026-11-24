@@ -36,3 +36,4 @@ mongo/lab6/node_modules/
 artifacts/lab6/control/
 artifacts/lab6/.lab6.lock
 artifacts/lab6/**/*.tmp
+artifacts/lab7/**/*.tmp

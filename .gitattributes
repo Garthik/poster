@@ -4,3 +4,5 @@ scripts/lab6/** text eol=lf
 mongo/lab6/** text eol=lf
 tests/lab6/** text eol=lf
 docker-compose.lab6.yml text eol=lf
+scripts/lab7.sh text eol=lf
+mongo/lab7/** text eol=lf

@@ -1,0 +1,131 @@
+{
+  "top": [
+    {
+      "_id": "s7-page-0003",
+      "reviews": 648,
+      "headline": "Гид по мероприятию 0003",
+      "pgEventId": "1",
+      "averageRating": 3.05
+    },
+    {
+      "_id": "s7-page-0015",
+      "reviews": 639,
+      "headline": "Гид по мероприятию 0015",
+      "pgEventId": "1",
+      "averageRating": 2.95
+    },
+    {
+      "_id": "s7-page-0013",
+      "reviews": 630,
+      "headline": "Гид по мероприятию 0013",
+      "pgEventId": "2",
+      "averageRating": 2.97
+    },
+    {
+      "_id": "s7-page-0002",
+      "reviews": 619,
+      "headline": "Гид по мероприятию 0002",
+      "pgEventId": "3",
+      "averageRating": 2.97
+    },
+    {
+      "_id": "s7-page-0006",
+      "reviews": 614,
+      "headline": "Гид по мероприятию 0006",
+      "pgEventId": "1",
+      "averageRating": 3.06
+    },
+    {
+      "_id": "s7-page-0001",
+      "reviews": 596,
+      "headline": "Гид по мероприятию 0001",
+      "pgEventId": "2",
+      "averageRating": 3.08
+    },
+    {
+      "_id": "s7-page-0005",
+      "reviews": 595,
+      "headline": "Гид по мероприятию 0005",
+      "pgEventId": "3",
+      "averageRating": 2.94
+    },
+    {
+      "_id": "s7-page-0010",
+      "reviews": 593,
+      "headline": "Гид по мероприятию 0010",
+      "pgEventId": "2",
+      "averageRating": 2.99
+    },
+    {
+      "_id": "s7-page-0007",
+      "reviews": 592,
+      "headline": "Гид по мероприятию 0007",
+      "pgEventId": "2",
+      "averageRating": 3.02
+    },
+    {
+      "_id": "s7-page-0011",
+      "reviews": 589,
+      "headline": "Гид по мероприятию 0011",
+      "pgEventId": "3",
+      "averageRating": 3.03
+    }
+  ],
+  "facet": {
+    "byStatus": [
+      {
+        "_id": "approved",
+        "count": 45948
+      },
+      {
+        "_id": "pending",
+        "count": 13015
+      },
+      {
+        "_id": "rejected",
+        "count": 6573
+      }
+    ],
+    "approvedRatings": [
+      {
+        "_id": 1,
+        "count": 8989
+      },
+      {
+        "_id": 2,
+        "count": 9290
+      },
+      {
+        "_id": 3,
+        "count": 9172
+      },
+      {
+        "_id": 4,
+        "count": 9197
+      },
+      {
+        "_id": 5,
+        "count": 9300
+      }
+    ]
+  },
+  "materialized": [
+    {
+      "_id": "s7-page-0003",
+      "reviews": 648,
+      "ratingSum": 1975,
+      "averageRating": 3.05
+    },
+    {
+      "_id": "s7-page-1024",
+      "reviews": 0,
+      "ratingSum": 0,
+      "averageRating": null
+    }
+  ],
+  "verified": {
+    "pages": 1025,
+    "approved": 45948,
+    "checkedRows": 1025
+  }
+}

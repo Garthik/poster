@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "layout": "template",
+  "version": "7.0.45",
+  "at": {
+    "$date": "2026-11-23T14:28:02.115Z"
+  },
+  "verified": {
+    "pages": 1025,
+    "approved": 45948,
+    "checkedRows": 1025
+  },
+  "shards": [
+    {
+      "name": "shardA",
+      "host": "shardA/mongo1:27017,mongo2:27017,mongo3:27017"
+    },
+    {
+      "name": "shardB",
+      "host": "shardB/b:27017"
+    }
+  ]
+}

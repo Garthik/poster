@@ -1,0 +1,8 @@
+[
+  {"$match": {"moderation": "approved", "$expr": {"$and": [
+    {"$gte": ["$createdAt", {"$toDate": "2026-09-03T00:00:00Z"}]},
+    {"$lt":  ["$createdAt", {"$toDate": "2026-09-04T00:00:00Z"}]}
+  ]}}},
+  {"$group": {"_id": "$pageSlug", "score": {"$sum": 1}}},
+  {"$sort": {"score": -1, "_id": 1}}
+]

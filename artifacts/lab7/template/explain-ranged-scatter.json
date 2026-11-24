@@ -1,0 +1,229 @@
+{
+  "queryPlanner": {
+    "mongosPlannerVersion": 1,
+    "winningPlan": {
+      "stage": "SHARD_MERGE",
+      "shards": [
+        {
+          "shardName": "shardB",
+          "connectionString": "shardB/b:27017",
+          "serverInfo": {
+            "host": "6f06c9876266",
+            "port": 27017,
+            "version": "7.0.45",
+            "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
+          },
+          "namespace": "ticket_platform_docs.feedback_ranged",
+          "indexFilterSet": false,
+          "parsedQuery": {
+            "_id": {
+              "$eq": "s7-feedback-000007"
+            }
+          },
+          "queryHash": "869CED4F",
+          "planCacheKey": "333C0A17",
+          "optimizationTimeMillis": 0,
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "winningPlan": {
+            "stage": "SHARDING_FILTER",
+            "inputStage": {
+              "stage": "IDHACK"
+            }
+          },
+          "rejectedPlans": []
+        },
+        {
+          "shardName": "shardA",
+          "connectionString": "shardA/mongo1:27017,mongo2:27017,mongo3:27017",
+          "serverInfo": {
+            "host": "eaed225bf6f9",
+            "port": 27017,
+            "version": "7.0.45",
+            "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
+          },
+          "namespace": "ticket_platform_docs.feedback_ranged",
+          "indexFilterSet": false,
+          "parsedQuery": {
+            "_id": {
+              "$eq": "s7-feedback-000007"
+            }
+          },
+          "queryHash": "869CED4F",
+          "planCacheKey": "333C0A17",
+          "optimizationTimeMillis": 0,
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "winningPlan": {
+            "stage": "SHARDING_FILTER",
+            "inputStage": {
+              "stage": "IDHACK"
+            }
+          },
+          "rejectedPlans": []
+        }
+      ]
+    }
+  },
+  "executionStats": {
+    "nReturned": 1,
+    "executionTimeMillis": 1,
+    "totalKeysExamined": 1,
+    "totalDocsExamined": 1,
+    "executionStages": {
+      "stage": "SHARD_MERGE",
+      "nReturned": 1,
+      "executionTimeMillis": 1,
+      "totalKeysExamined": 1,
+      "totalDocsExamined": 1,
+      "totalChildMillis": 0,
+      "shards": [
+        {
+          "shardName": "shardB",
+          "executionSuccess": true,
+          "nReturned": 0,
+          "executionTimeMillis": 0,
+          "totalKeysExamined": 0,
+          "totalDocsExamined": 0,
+          "executionStages": {
+            "stage": "SHARDING_FILTER",
+            "nReturned": 0,
+            "executionTimeMillisEstimate": 0,
+            "works": 1,
+            "advanced": 0,
+            "needTime": 0,
+            "needYield": 0,
+            "saveState": 0,
+            "restoreState": 0,
+            "isEOF": 1,
+            "chunkSkips": 0,
+            "inputStage": {
+              "stage": "IDHACK",
+              "nReturned": 0,
+              "executionTimeMillisEstimate": 0,
+              "works": 1,
+              "advanced": 0,
+              "needTime": 0,
+              "needYield": 0,
+              "saveState": 0,
+              "restoreState": 0,
+              "isEOF": 1,
+              "keysExamined": 0,
+              "docsExamined": 0
+            }
+          }
+        },
+        {
+          "shardName": "shardA",
+          "executionSuccess": true,
+          "nReturned": 1,
+          "executionTimeMillis": 0,
+          "totalKeysExamined": 1,
+          "totalDocsExamined": 1,
+          "executionStages": {
+            "stage": "SHARDING_FILTER",
+            "nReturned": 1,
+            "executionTimeMillisEstimate": 0,
+            "works": 2,
+            "advanced": 1,
+            "needTime": 0,
+            "needYield": 0,
+            "saveState": 0,
+            "restoreState": 0,
+            "isEOF": 1,
+            "chunkSkips": 0,
+            "inputStage": {
+              "stage": "IDHACK",
+              "nReturned": 1,
+              "executionTimeMillisEstimate": 0,
+              "works": 1,
+              "advanced": 1,
+              "needTime": 0,
+              "needYield": 0,
+              "saveState": 0,
+              "restoreState": 0,
+              "isEOF": 1,
+              "keysExamined": 1,
+              "docsExamined": 1
+            }
+          }
+        }
+      ]
+    }
+  },
+  "serverInfo": {
+    "host": "ed60caf87e28",
+    "port": 27017,
+    "version": "7.0.45",
+    "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "forceClassicEngine"
+  },
+  "command": {
+    "find": "feedback_ranged",
+    "filter": {
+      "_id": "s7-feedback-000007"
+    },
+    "lsid": {
+      "id": {
+        "$binary": {
+          "base64": "H4jbAgKuSV+YKfRrHigl0A==",
+          "subType": "04"
+        }
+      }
+    },
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": {
+          "t": 1795444080,
+          "i": 1
+        }
+      },
+      "signature": {
+        "hash": {
+          "$binary": {
+            "base64": "aG+66BiT1peBlC3buvK+qjbFqVM=",
+            "subType": "00"
+          }
+        },
+        "keyId": 7711371822985380000
+      }
+    },
+    "$db": "ticket_platform_docs"
+  },
+  "ok": 1,
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": {
+        "t": 1795444080,
+        "i": 1
+      }
+    },
+    "signature": {
+      "hash": {
+        "$binary": {
+          "base64": "aG+66BiT1peBlC3buvK+qjbFqVM=",
+          "subType": "00"
+        }
+      },
+      "keyId": 7711371822985380000
+    }
+  },
+  "operationTime": {
+    "$timestamp": {
+      "t": 1795444080,
+      "i": 1
+    }
+  }
+}

@@ -1,0 +1,36 @@
+# The first shard inherits the three MongoDB services from the supplied Sprint 6 file.
+services:
+  keyfile-init:
+    extends: {file: "${LAB7_TEMPLATE_COMPOSE:?}", service: keyfile-init}
+    image: mongo:7.0
+  mongo1:
+    extends: {file: "${LAB7_TEMPLATE_COMPOSE:?}", service: mongo1}
+    image: mongo:7.0
+    environment: {MONGO_INITDB_ROOT_USERNAME: "", MONGO_INITDB_ROOT_PASSWORD: ""}
+    command: &shardA [mongod, --shardsvr, --replSet, shardA, --port, "27017", --bind_ip_all, --keyFile, /etc/mongodb-keyfile/mongo-keyfile, --wiredTigerCacheSizeGB, "0.25", --oplogSize, "64"]
+  mongo2:
+    extends: {file: "${LAB7_TEMPLATE_COMPOSE:?}", service: mongo2}
+    image: mongo:7.0
+    command: *shardA
+  mongo3:
+    extends: {file: "${LAB7_TEMPLATE_COMPOSE:?}", service: mongo3}
+    image: mongo:7.0
+    command: *shardA
+  cfg:
+    extends: {file: compose.yaml, service: cfg}
+  b:
+    extends: {file: compose.yaml, service: b}
+  router:
+    extends: {file: compose.yaml, service: router}
+volumes:
+  keyfile_data: {}
+  cfg_data: {}
+  b_data: {}
+  mongo1_data: {}
+  mongo1_config: {}
+  mongo2_data: {}
+  mongo2_config: {}
+  mongo3_data: {}
+  mongo3_config: {}
+networks:
+  mongodb_network: {}

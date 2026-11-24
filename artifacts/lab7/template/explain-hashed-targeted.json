@@ -1,0 +1,217 @@
+{
+  "queryPlanner": {
+    "mongosPlannerVersion": 1,
+    "winningPlan": {
+      "stage": "SINGLE_SHARD",
+      "shards": [
+        {
+          "shardName": "shardA",
+          "connectionString": "shardA/mongo1:27017,mongo2:27017,mongo3:27017",
+          "serverInfo": {
+            "host": "eaed225bf6f9",
+            "port": 27017,
+            "version": "7.0.45",
+            "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
+          },
+          "namespace": "ticket_platform_docs.visitor_feedback",
+          "indexFilterSet": false,
+          "parsedQuery": {
+            "$and": [
+              {
+                "_id": {
+                  "$eq": "s7-feedback-000007"
+                }
+              },
+              {
+                "pageSlug": {
+                  "$eq": "s7-page-0278"
+                }
+              }
+            ]
+          },
+          "queryHash": "24921DDB",
+          "planCacheKey": "68A436F3",
+          "optimizationTimeMillis": 0,
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "winningPlan": {
+            "stage": "FETCH",
+            "filter": {
+              "pageSlug": {
+                "$eq": "s7-page-0278"
+              }
+            },
+            "inputStage": {
+              "stage": "IXSCAN",
+              "keyPattern": {
+                "_id": 1
+              },
+              "indexName": "_id_",
+              "isMultiKey": false,
+              "isUnique": true,
+              "isSparse": false,
+              "isPartial": false,
+              "indexVersion": 2,
+              "direction": "forward",
+              "indexBounds": {
+                "_id": [
+                  "[\"s7-feedback-000007\", \"s7-feedback-000007\"]"
+                ]
+              }
+            }
+          },
+          "rejectedPlans": []
+        }
+      ]
+    }
+  },
+  "executionStats": {
+    "nReturned": 1,
+    "executionTimeMillis": 1,
+    "totalKeysExamined": 1,
+    "totalDocsExamined": 1,
+    "executionStages": {
+      "stage": "SINGLE_SHARD",
+      "nReturned": 1,
+      "executionTimeMillis": 1,
+      "totalKeysExamined": 1,
+      "totalDocsExamined": 1,
+      "totalChildMillis": 0,
+      "shards": [
+        {
+          "shardName": "shardA",
+          "executionSuccess": true,
+          "nReturned": 1,
+          "executionTimeMillis": 0,
+          "totalKeysExamined": 1,
+          "totalDocsExamined": 1,
+          "executionStages": {
+            "stage": "FETCH",
+            "filter": {
+              "pageSlug": {
+                "$eq": "s7-page-0278"
+              }
+            },
+            "nReturned": 1,
+            "executionTimeMillisEstimate": 0,
+            "works": 2,
+            "advanced": 1,
+            "needTime": 0,
+            "needYield": 0,
+            "saveState": 0,
+            "restoreState": 0,
+            "isEOF": 1,
+            "docsExamined": 1,
+            "alreadyHasObj": 0,
+            "inputStage": {
+              "stage": "IXSCAN",
+              "nReturned": 1,
+              "executionTimeMillisEstimate": 0,
+              "works": 2,
+              "advanced": 1,
+              "needTime": 0,
+              "needYield": 0,
+              "saveState": 0,
+              "restoreState": 0,
+              "isEOF": 1,
+              "keyPattern": {
+                "_id": 1
+              },
+              "indexName": "_id_",
+              "isMultiKey": false,
+              "isUnique": true,
+              "isSparse": false,
+              "isPartial": false,
+              "indexVersion": 2,
+              "direction": "forward",
+              "indexBounds": {
+                "_id": [
+                  "[\"s7-feedback-000007\", \"s7-feedback-000007\"]"
+                ]
+              },
+              "keysExamined": 1,
+              "seeks": 1,
+              "dupsTested": 0,
+              "dupsDropped": 0
+            }
+          }
+        }
+      ]
+    }
+  },
+  "serverInfo": {
+    "host": "ed60caf87e28",
+    "port": 27017,
+    "version": "7.0.45",
+    "gitVersion": "a52313e13ab55c9bddf7c3ff91dab286fa381796"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "forceClassicEngine"
+  },
+  "command": {
+    "find": "visitor_feedback",
+    "filter": {
+      "pageSlug": "s7-page-0278",
+      "_id": "s7-feedback-000007"
+    },
+    "lsid": {
+      "id": {
+        "$binary": {
+          "base64": "H4jbAgKuSV+YKfRrHigl0A==",
+          "subType": "04"
+        }
+      }
+    },
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": {
+          "t": 1795444080,
+          "i": 1
+        }
+      },
+      "signature": {
+        "hash": {
+          "$binary": {
+            "base64": "aG+66BiT1peBlC3buvK+qjbFqVM=",
+            "subType": "00"
+          }
+        },
+        "keyId": 7711371822985380000
+      }
+    },
+    "$db": "ticket_platform_docs"
+  },
+  "ok": 1,
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": {
+        "t": 1795444080,
+        "i": 1
+      }
+    },
+    "signature": {
+      "hash": {
+        "$binary": {
+          "base64": "aG+66BiT1peBlC3buvK+qjbFqVM=",
+          "subType": "00"
+        }
+      },
+      "keyId": 7711371822985380000
+    }
+  },
+  "operationTime": {
+    "$timestamp": {
+      "t": 1795444080,
+      "i": 1
+    }
+  }
+}

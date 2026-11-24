@@ -1,0 +1,150 @@
+{
+  "initial": {
+    "_id": "s7-page-0007",
+    "reviews": 592,
+    "ratingSum": 1786,
+    "averageRating": 3.02
+  },
+  "steps": [
+    {
+      "step": "insert-pending",
+      "refreshed": [
+        "s7-page-0007"
+      ],
+      "a": {
+        "_id": "s7-page-0007",
+        "reviews": 592,
+        "ratingSum": 1786,
+        "averageRating": 3.02
+      },
+      "b": {
+        "_id": "s7-page-1024",
+        "reviews": 0,
+        "ratingSum": 0,
+        "averageRating": null
+      }
+    },
+    {
+      "step": "approve-before-ack",
+      "refreshed": [
+        "s7-page-0007"
+      ],
+      "a": {
+        "_id": "s7-page-0007",
+        "reviews": 593,
+        "ratingSum": 1791,
+        "averageRating": 3.02
+      },
+      "b": {
+        "_id": "s7-page-1024",
+        "reviews": 0,
+        "ratingSum": 0,
+        "averageRating": null
+      }
+    },
+    {
+      "step": "replay-after-interruption",
+      "refreshed": [
+        "s7-page-0007"
+      ],
+      "a": {
+        "_id": "s7-page-0007",
+        "reviews": 593,
+        "ratingSum": 1791,
+        "averageRating": 3.02
+      },
+      "b": {
+        "_id": "s7-page-1024",
+        "reviews": 0,
+        "ratingSum": 0,
+        "averageRating": null
+      }
+    },
+    {
+      "step": "edit-rating",
+      "refreshed": [
+        "s7-page-0007"
+      ],
+      "a": {
+        "_id": "s7-page-0007",
+        "reviews": 593,
+        "ratingSum": 1788,
+        "averageRating": 3.02
+      },
+      "b": {
+        "_id": "s7-page-1024",
+        "reviews": 0,
+        "ratingSum": 0,
+        "averageRating": null
+      }
+    },
+    {
+      "step": "move-to-other-page",
+      "refreshed": [
+        "s7-page-0007",
+        "s7-page-1024"
+      ],
+      "a": {
+        "_id": "s7-page-0007",
+        "reviews": 592,
+        "ratingSum": 1786,
+        "averageRating": 3.02
+      },
+      "b": {
+        "_id": "s7-page-1024",
+        "reviews": 1,
+        "ratingSum": 2,
+        "averageRating": 2
+      }
+    },
+    {
+      "step": "delete-last-approved",
+      "refreshed": [
+        "s7-page-1024"
+      ],
+      "a": {
+        "_id": "s7-page-0007",
+        "reviews": 592,
+        "ratingSum": 1786,
+        "averageRating": 3.02
+      },
+      "b": {
+        "_id": "s7-page-1024",
+        "reviews": 0,
+        "ratingSum": 0,
+        "averageRating": null
+      }
+    },
+    {
+      "step": "empty-queue",
+      "refreshed": [],
+      "a": {
+        "_id": "s7-page-0007",
+        "reviews": 592,
+        "ratingSum": 1786,
+        "averageRating": 3.02
+      },
+      "b": {
+        "_id": "s7-page-1024",
+        "reviews": 0,
+        "ratingSum": 0,
+        "averageRating": null
+      }
+    }
+  ],
+  "pageLifecycle": {
+    "created": {
+      "_id": "s7-inc-new-page",
+      "reviews": 0,
+      "ratingSum": 0,
+      "averageRating": null
+    },
+    "afterDelete": null
+  },
+  "fullEqualsIncremental": true,
+  "verified": {
+    "pages": 1025,
+    "approved": 45948,
+    "checkedRows": 1025
+  }
+}

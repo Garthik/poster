@@ -1,0 +1,10 @@
+[
+  {"$match": {"moderation": "approved"}},
+  {"$group": {"_id": "$pageSlug", "reviews": {"$sum": 1}, "averageRating": {"$avg": "$rating"}}},
+  {"$lookup": {"from": "event_pages", "localField": "_id", "foreignField": "_id", "as": "page"}},
+  {"$unwind": "$page"},
+  {"$match": {"page.status": "published"}},
+  {"$project": {"_id": 1, "headline": "$page.headline", "pgEventId": "$page.pgEventId", "reviews": 1, "averageRating": {"$round": ["$averageRating", 2]}}},
+  {"$sort": {"reviews": -1, "_id": 1}},
+  {"$limit": 10}
+]

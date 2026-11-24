@@ -1,0 +1,301 @@
+{
+  "version": "7.0.45",
+  "layout": "template",
+  "at": {
+    "$date": "2026-11-23T14:28:00.692Z"
+  },
+  "shards": [
+    {
+      "name": "shardA",
+      "host": "shardA/mongo1:27017,mongo2:27017,mongo3:27017"
+    },
+    {
+      "name": "shardB",
+      "host": "shardB/b:27017"
+    }
+  ],
+  "count": 65536,
+  "hashed": {
+    "documents": [
+      {
+        "shard": "shardA",
+        "documents": 29085
+      },
+      {
+        "shard": "shardB",
+        "documents": 36451
+      }
+    ],
+    "chunks": [
+      {
+        "shard": "shardB",
+        "min": {
+          "pageSlug": {
+            "$minKey": 1
+          }
+        },
+        "max": {
+          "pageSlug": {
+            "$numberLong": "-6917529027641081850"
+          }
+        }
+      },
+      {
+        "shard": "shardB",
+        "min": {
+          "pageSlug": {
+            "$numberLong": "-6917529027641081850"
+          }
+        },
+        "max": {
+          "pageSlug": {
+            "$numberLong": "-4611686018427387900"
+          }
+        }
+      },
+      {
+        "shard": "shardB",
+        "min": {
+          "pageSlug": {
+            "$numberLong": "-4611686018427387900"
+          }
+        },
+        "max": {
+          "pageSlug": {
+            "$numberLong": "-2305843009213693950"
+          }
+        }
+      },
+      {
+        "shard": "shardB",
+        "min": {
+          "pageSlug": {
+            "$numberLong": "-2305843009213693950"
+          }
+        },
+        "max": {
+          "pageSlug": {
+            "$numberLong": "0"
+          }
+        }
+      },
+      {
+        "shard": "shardA",
+        "min": {
+          "pageSlug": {
+            "$numberLong": "0"
+          }
+        },
+        "max": {
+          "pageSlug": {
+            "$numberLong": "2305843009213693950"
+          }
+        }
+      },
+      {
+        "shard": "shardA",
+        "min": {
+          "pageSlug": {
+            "$numberLong": "2305843009213693950"
+          }
+        },
+        "max": {
+          "pageSlug": {
+            "$numberLong": "4611686018427387900"
+          }
+        }
+      },
+      {
+        "shard": "shardA",
+        "min": {
+          "pageSlug": {
+            "$numberLong": "4611686018427387900"
+          }
+        },
+        "max": {
+          "pageSlug": {
+            "$numberLong": "6917529027641081850"
+          }
+        }
+      },
+      {
+        "shard": "shardA",
+        "min": {
+          "pageSlug": {
+            "$numberLong": "6917529027641081850"
+          }
+        },
+        "max": {
+          "pageSlug": {
+            "$maxKey": 1
+          }
+        }
+      }
+    ]
+  },
+  "ranged": {
+    "documents": [
+      {
+        "shard": "shardA",
+        "documents": 39242
+      },
+      {
+        "shard": "shardB",
+        "documents": 26294
+      }
+    ],
+    "chunks": [
+      {
+        "shard": "shardA",
+        "min": {
+          "pageSlug": {
+            "$minKey": 1
+          }
+        },
+        "max": {
+          "pageSlug": "s7-page-0512"
+        }
+      },
+      {
+        "shard": "shardB",
+        "min": {
+          "pageSlug": "s7-page-0512"
+        },
+        "max": {
+          "pageSlug": {
+            "$maxKey": 1
+          }
+        }
+      }
+    ]
+  },
+  "requests": {
+    "hashed-targeted": {
+      "collection": "visitor_feedback",
+      "filter": {
+        "pageSlug": "s7-page-0278",
+        "_id": "s7-feedback-000007"
+      },
+      "shards": [
+        {
+          "name": "shardA",
+          "nReturned": 1
+        }
+      ],
+      "nReturned": 1,
+      "docsExamined": 1,
+      "keysExamined": 1
+    },
+    "hashed-scatter": {
+      "collection": "visitor_feedback",
+      "filter": {
+        "_id": "s7-feedback-000007"
+      },
+      "shards": [
+        {
+          "name": "shardA",
+          "nReturned": 1
+        },
+        {
+          "name": "shardB",
+          "nReturned": 0
+        }
+      ],
+      "nReturned": 1,
+      "docsExamined": 1,
+      "keysExamined": 1
+    },
+    "hashed-range": {
+      "collection": "visitor_feedback",
+      "filter": {
+        "pageSlug": {
+          "$gte": "s7-page-0000",
+          "$lt": "s7-page-0016"
+        }
+      },
+      "shards": [
+        {
+          "name": "shardA",
+          "nReturned": 4271
+        },
+        {
+          "name": "shardB",
+          "nReturned": 9607
+        }
+      ],
+      "nReturned": 13878,
+      "docsExamined": 13878,
+      "keysExamined": 13878
+    },
+    "ranged-targeted": {
+      "collection": "feedback_ranged",
+      "filter": {
+        "pageSlug": "s7-page-0278",
+        "_id": "s7-feedback-000007"
+      },
+      "shards": [
+        {
+          "name": "shardA",
+          "nReturned": 1
+        }
+      ],
+      "nReturned": 1,
+      "docsExamined": 1,
+      "keysExamined": 1
+    },
+    "ranged-scatter": {
+      "collection": "feedback_ranged",
+      "filter": {
+        "_id": "s7-feedback-000007"
+      },
+      "shards": [
+        {
+          "name": "shardA",
+          "nReturned": 1
+        },
+        {
+          "name": "shardB",
+          "nReturned": 0
+        }
+      ],
+      "nReturned": 1,
+      "docsExamined": 1,
+      "keysExamined": 1
+    },
+    "ranged-range": {
+      "collection": "feedback_ranged",
+      "filter": {
+        "pageSlug": {
+          "$gte": "s7-page-0000",
+          "$lt": "s7-page-0016"
+        }
+      },
+      "shards": [
+        {
+          "name": "shardA",
+          "nReturned": 13878
+        }
+      ],
+      "nReturned": 13878,
+      "docsExamined": 13878,
+      "keysExamined": 13878
+    }
+  },
+  "candidates": {
+    "pageSlug": {
+      "distinct": 1024,
+      "largest": 918,
+      "total": 65536
+    },
+    "createdAt": {
+      "distinct": 65536,
+      "largest": 1,
+      "total": 65536
+    },
+    "moderation": {
+      "distinct": 3,
+      "largest": 45948,
+      "total": 65536
+    }
+  }
+}

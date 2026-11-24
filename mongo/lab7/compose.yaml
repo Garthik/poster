@@ -1,0 +1,51 @@
+services:
+  keyfile-init:
+    image: mongo:7.0
+    entrypoint: ["/bin/sh", "-ec"]
+    command: ["install -o 999 -g 999 -m 400 /source/key /keyfile/mongo-keyfile"]
+    volumes:
+      - ${MONGO_KEYFILE_PATH:?}:/source/key:ro
+      - keyfile_data:/keyfile
+    networks: [mongodb_network]
+  cfg:
+    image: mongo:7.0
+    command: [mongod, --configsvr, --replSet, cfg7, --port, "27017", --bind_ip_all, --keyFile, /etc/mongodb-keyfile/mongo-keyfile, --wiredTigerCacheSizeGB, "0.25", --oplogSize, "64"]
+    volumes: [cfg_data:/data/configdb, keyfile_data:/etc/mongodb-keyfile:ro]
+    depends_on:
+      keyfile-init: {condition: service_completed_successfully}
+    networks: [mongodb_network]
+  mongo1:
+    image: mongo:7.0
+    command: [mongod, --shardsvr, --replSet, shardA, --port, "27017", --bind_ip_all, --keyFile, /etc/mongodb-keyfile/mongo-keyfile, --wiredTigerCacheSizeGB, "0.25", --oplogSize, "64"]
+    volumes: [mongo1_data:/data/db, keyfile_data:/etc/mongodb-keyfile:ro]
+    depends_on:
+      keyfile-init: {condition: service_completed_successfully}
+    networks: [mongodb_network]
+  b:
+    image: mongo:7.0
+    command: [mongod, --shardsvr, --replSet, shardB, --port, "27017", --bind_ip_all, --keyFile, /etc/mongodb-keyfile/mongo-keyfile, --wiredTigerCacheSizeGB, "0.25", --oplogSize, "64"]
+    volumes: [b_data:/data/db, keyfile_data:/etc/mongodb-keyfile:ro]
+    depends_on:
+      keyfile-init: {condition: service_completed_successfully}
+    networks: [mongodb_network]
+  router:
+    image: mongo:7.0
+    command: [mongos, --configdb, "cfg7/cfg:27017", --port, "27017", --bind_ip_all, --keyFile, /etc/mongodb-keyfile/mongo-keyfile]
+    volumes:
+      - keyfile_data:/etc/mongodb-keyfile:ro
+      - ${LAB7_SECRET_DIR:?}/password:/lab-password:ro
+      - ${LAB7_DIR:?}:/work/lab7:ro
+      - ${LAB7_DIR:?}/../schema.js:/work/schema.js:ro
+      - ${LAB7_ROOT:?}/artifacts/lab5/pg_events.json:/work/events.json:ro
+      - ${LAB7_EVIDENCE:?}:/evidence
+    ports: ["127.0.0.1:${LAB7_PORT:?}:27017"]
+    depends_on:
+      keyfile-init: {condition: service_completed_successfully}
+    networks: [mongodb_network]
+volumes:
+  keyfile_data: {}
+  cfg_data: {}
+  mongo1_data: {}
+  b_data: {}
+networks:
+  mongodb_network: {}

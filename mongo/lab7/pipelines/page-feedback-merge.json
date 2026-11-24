@@ -1,0 +1,19 @@
+[
+  {"$lookup": {
+    "from": "visitor_feedback", "localField": "_id", "foreignField": "pageSlug",
+    "pipeline": [
+      {"$match": {"moderation": "approved"}},
+      {"$group": {"_id": null, "n": {"$sum": 1}, "points": {"$sum": "$rating"}}}
+    ],
+    "as": "counts"
+  }},
+  {"$project": {
+    "_id": 1,
+    "reviews": {"$ifNull": [{"$first": "$counts.n"}, 0]},
+    "ratingSum": {"$ifNull": [{"$first": "$counts.points"}, 0]}
+  }},
+  {"$set": {"averageRating": {"$cond": [
+    {"$gt": ["$reviews", 0]}, {"$round": [{"$divide": ["$ratingSum", "$reviews"]}, 2]}, null
+  ]}}},
+  {"$merge": {"into": "page_feedback_report", "on": "_id", "whenMatched": "replace", "whenNotMatched": "insert"}}
+]
